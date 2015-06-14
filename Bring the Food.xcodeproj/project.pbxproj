@@ -35,6 +35,7 @@
 		3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */; };
 		3B6F96C11B2DF517004C9503 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96C01B2DF517004C9503 /* ProductType.swift */; };
 		3B6F96C21B2DF52F004C9503 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96C01B2DF517004C9503 /* ProductType.swift */; };
+		3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
 		3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */; };
 		3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC327121B2D8E9E002F0DCE /* Credentials.swift */; };
 		3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
@@ -370,6 +371,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */,
 				3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */,
 				3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */,
 				3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */,
