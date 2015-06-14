@@ -41,7 +41,6 @@
 		3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */; };
 		3BC327181B2DB8D0002F0DCE /* RestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */; };
 		3BC327191B2DB97E002F0DCE /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC327121B2D8E9E002F0DCE /* Credentials.swift */; };
-		3BC3271A1B2DB98A002F0DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
 		3BD284741B2C01A200D77319 /* ModelUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD284731B2C01A200D77319 /* ModelUpdater.swift */; };
 		3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD284731B2C01A200D77319 /* ModelUpdater.swift */; };
 		3BD284761B2C0BE700D77319 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1651B2B65D200436903 /* Model.swift */; };
@@ -146,36 +145,16 @@
 		3B1B4F971B1EEE6400B9D705 /* Bring the Food */ = {
 			isa = PBXGroup;
 			children = (
-				3BC327121B2D8E9E002F0DCE /* Credentials.swift */,
 				3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */,
-				3B1B4F9C1B1EEE6400B9D705 /* FirstViewController.swift */,
-				3B1B4F9E1B1EEE6400B9D705 /* SecondViewController.swift */,
+				3BD284731B2C01A200D77319 /* ModelUpdater.swift */,
+				3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */,
 				3B1B4FA01B1EEE6400B9D705 /* Main.storyboard */,
 				3B1B4FA31B1EEE6400B9D705 /* Images.xcassets */,
+				3B6F96C61B2DFBEE004C9503 /* ViewControllers */,
+				3B6F96C51B2DFB49004C9503 /* Persistence */,
+				3B6F96C41B2DFB2A004C9503 /* Utils */,
+				3B6F96C31B2DFB1E004C9503 /* Model */,
 				3B1B4F981B1EEE6400B9D705 /* Supporting Files */,
-				B333D38A1B2042A000DBF44D /* LoginViewController.swift */,
-				B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */,
-				B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */,
-				3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */,
-				3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */,
-				3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */,
-				3B2E97F01B28B59400506B54 /* NewDonation.swift */,
-				3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */,
-				3B4AE1591B2B5ACF00436903 /* Address.swift */,
-				3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */,
-				3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */,
-				3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */,
-				3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */,
-				3B4AE15D1B2B5AE100436903 /* Booking.swift */,
-				3B4AE1651B2B65D200436903 /* Model.swift */,
-				3B4AE1611B2B5AF800436903 /* User.swift */,
-				3B4AE1631B2B5B2100436903 /* StoredDonation.swift */,
-				3B132A9E1B28C3A000D8A09F /* Date.swift */,
-				3BD284731B2C01A200D77319 /* ModelUpdater.swift */,
-				B3DED4801B2CA00F00F9808D /* MainViewController.swift */,
-				3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */,
-				3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */,
-				3B6F96C01B2DF517004C9503 /* ProductType.swift */,
 			);
 			path = "Bring the Food";
 			sourceTree = "<group>";
@@ -203,6 +182,58 @@
 				3B1B4FB11B1EEE6400B9D705 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3B6F96C31B2DFB1E004C9503 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE1651B2B65D200436903 /* Model.swift */,
+				3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */,
+				3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */,
+				3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		3B6F96C41B2DFB2A004C9503 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				3B4AE1591B2B5ACF00436903 /* Address.swift */,
+				3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */,
+				3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */,
+				3B132A9E1B28C3A000D8A09F /* Date.swift */,
+				3B6F96C01B2DF517004C9503 /* ProductType.swift */,
+				3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		3B6F96C51B2DFB49004C9503 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				3BC327121B2D8E9E002F0DCE /* Credentials.swift */,
+				3B2E97F01B28B59400506B54 /* NewDonation.swift */,
+				3B4AE1631B2B5B2100436903 /* StoredDonation.swift */,
+				3B4AE15D1B2B5AE100436903 /* Booking.swift */,
+				3B4AE1611B2B5AF800436903 /* User.swift */,
+				3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */,
+				3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */,
+				3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */,
+			);
+			name = Persistence;
+			sourceTree = "<group>";
+		};
+		3B6F96C61B2DFBEE004C9503 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3B1B4F9C1B1EEE6400B9D705 /* FirstViewController.swift */,
+				3B1B4F9E1B1EEE6400B9D705 /* SecondViewController.swift */,
+				B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */,
+				B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */,
+				B333D38A1B2042A000DBF44D /* LoginViewController.swift */,
+				B3DED4801B2CA00F00F9808D /* MainViewController.swift */,
+			);
+			name = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,7 +372,6 @@
 			files = (
 				3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */,
 				3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */,
-				3BC3271A1B2DB98A002F0DCE /* AppDelegate.swift in Sources */,
 				3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */,
 				3BF334DC1B2DCA06002C0A78 /* Bring_the_Food.xcdatamodeld in Sources */,
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
