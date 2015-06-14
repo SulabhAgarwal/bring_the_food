@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Get reference to storyboard
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         if (RestInterface.getInstance().isLoggedIn()){
-            let rootController = storyboard.instantiateViewControllerWithIdentifier("landingScreen") as! UIViewController
+            let rootController = storyboard.instantiateViewControllerWithIdentifier("mainViewController") as! UIViewController
             if self.window != nil {
                 self.window!.rootViewController = rootController
             }
