@@ -31,6 +31,10 @@
 		3B4AE1621B2B5AF800436903 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1611B2B5AF800436903 /* User.swift */; };
 		3B4AE1641B2B5B2100436903 /* StoredDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1631B2B5B2100436903 /* StoredDonation.swift */; };
 		3B4AE1661B2B65D200436903 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1651B2B65D200436903 /* Model.swift */; };
+		3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */; };
+		3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */; };
+		3B6F96C11B2DF517004C9503 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96C01B2DF517004C9503 /* ProductType.swift */; };
+		3B6F96C21B2DF52F004C9503 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96C01B2DF517004C9503 /* ProductType.swift */; };
 		3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */; };
 		3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC327121B2D8E9E002F0DCE /* Credentials.swift */; };
 		3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
@@ -89,6 +93,8 @@
 		3B4AE1611B2B5AF800436903 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3B4AE1631B2B5B2100436903 /* StoredDonation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoredDonation.swift; sourceTree = "<group>"; };
 		3B4AE1651B2B65D200436903 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelUnit.swift; sourceTree = "<group>"; };
+		3B6F96C01B2DF517004C9503 /* ProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
 		3BC3270E1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bring_the_Food.xcdatamodel; sourceTree = "<group>"; };
 		3BC327121B2D8E9E002F0DCE /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		3BD284731B2C01A200D77319 /* ModelUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUpdater.swift; sourceTree = "<group>"; };
@@ -168,6 +174,8 @@
 				3BD284731B2C01A200D77319 /* ModelUpdater.swift */,
 				B3DED4801B2CA00F00F9808D /* MainViewController.swift */,
 				3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */,
+				3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */,
+				3B6F96C01B2DF517004C9503 /* ProductType.swift */,
 			);
 			path = "Bring the Food";
 			sourceTree = "<group>";
@@ -299,6 +307,7 @@
 			files = (
 				3B4AE1641B2B5B2100436903 /* StoredDonation.swift in Sources */,
 				B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */,
+				3B6F96C11B2DF517004C9503 /* ProductType.swift in Sources */,
 				3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */,
 				3B4AE15C1B2B5ADB00436903 /* ApplicationSettings.swift in Sources */,
 				B3FCE0011B2505BB00A86F7E /* SignInStep2ViewController.swift in Sources */,
@@ -313,6 +322,7 @@
 				3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */,
 				3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */,
 				3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */,
+				3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */,
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
 				3B4AE15A1B2B5ACF00436903 /* Address.swift in Sources */,
 				3B4AE1601B2B5AE700436903 /* BtfNotification.swift in Sources */,
@@ -336,11 +346,13 @@
 				3BF334DC1B2DCA06002C0A78 /* Bring_the_Food.xcdatamodeld in Sources */,
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
+				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
 				3B2727F61B2CAAA70064F53A /* OthersDonationsList.swift in Sources */,
 				3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */,
 				3B132AA11B28CE8700D8A09F /* Date.swift in Sources */,
 				3BD2847A1B2C0C9C00D77319 /* ApplicationSettings.swift in Sources */,
 				3BD284771B2C0C8D00D77319 /* StoredDonation.swift in Sources */,
+				3B6F96C21B2DF52F004C9503 /* ProductType.swift in Sources */,
 				3B132AA01B28CE8300D8A09F /* NewDonation.swift in Sources */,
 				3B12DA5A1B27498700105A48 /* HTTPResponseData.swift in Sources */,
 				3BC327191B2DB97E002F0DCE /* Credentials.swift in Sources */,

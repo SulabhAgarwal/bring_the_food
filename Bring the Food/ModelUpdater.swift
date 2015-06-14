@@ -143,14 +143,8 @@ public class ModelUpdater : NSObject{
                 
                 let isValid:Bool = e["live"] as! Bool!
                 let isBooked:Bool = e["has_open_bookings"] as! Bool!
-                let can_be_modified:Bool!
-                if (isValid && !isBooked){
-                    can_be_modified = true
-                } else {
-                    can_be_modified = false
-                }
                 
-                var tempDonation = StoredDonation(id: donId, description: donDescription, parcelSize: donParcelSize, parcelUnit: donParcelUnit, productDate: donProductDate, productType: donProductType, photo_url: donPhotoUrl, supplier: supplier, can_be_modified: can_be_modified)
+                var tempDonation = StoredDonation(id: donId, description: donDescription, parcelSize: donParcelSize, parcelUnit: donParcelUnit, productDate: donProductDate, productType: donProductType, photo_url: donPhotoUrl, supplier: supplier, isValid: isValid, hasOpenBookings: isBooked)
                 
                 
                 if(isValid){
@@ -211,7 +205,7 @@ public class ModelUpdater : NSObject{
                 let can_be_modified:Bool = false
                 
                 
-                var tempDonation = StoredDonation(id: donId, description: donDescription, parcelSize: donParcelSize, parcelUnit: donParcelUnit, productDate: donProductDate, productType: donProductType, photo_url: donPhotoUrl, supplier: supplier, can_be_modified: can_be_modified)
+                var tempDonation = StoredDonation(id: donId, description: donDescription, parcelSize: donParcelSize, parcelUnit: donParcelUnit, productDate: donProductDate, productType: donProductType, photo_url: donPhotoUrl, supplier: supplier, isValid: isValid, hasOpenBookings: isBooked)
                 
                 othersDonationList.append(tempDonation)
                 
