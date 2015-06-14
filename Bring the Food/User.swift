@@ -46,4 +46,8 @@ public class User{
     public func getAddress() -> Address! {
         return self.address
     }
+    
+    public func getImageURL() -> String! {
+        return self.imageURL
+    }
 }

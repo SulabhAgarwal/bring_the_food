@@ -13,16 +13,18 @@ public class StoredDonation : NewDonation {
     private let id: Int!
     private let supplier: User!
     private let photo_url: String!
-    private let can_be_modified: Bool!
+    private let isValid: Bool!
+    private let hasOpenBookings: Bool!
     
     
     public init(id:Int!, description: String!, parcelSize: Float!, parcelUnit: ParcelUnit!,
-        productDate: Date!, productType: ProductType!, photo_url:String!, supplier: User!, can_be_modified: Bool!){
+        productDate: Date!, productType: ProductType!, photo_url:String!, supplier: User!, isValid: Bool!, hasOpenBookings: Bool!){
             
             self.id = id
             self.supplier = supplier
             self.photo_url = photo_url
-            self.can_be_modified = can_be_modified
+            self.isValid = isValid
+            self.hasOpenBookings = hasOpenBookings
             
             super.init(description, parcelSize: parcelSize, parcelUnit: parcelUnit,
                 productDate: productDate, productType: productType)
@@ -47,11 +49,18 @@ public class StoredDonation : NewDonation {
     //TODO
     public func book(){}
     
-    public func getPhotoURL() -> String?{
+    public func getPhotoURL() -> String! {
         return self.photo_url
     }
     
     public func canBeModified() -> Bool! {
-        return self.can_be_modified
+        if self.isValid! && !self.hasOpenBookings! {
+                return true
+        }
+        return false
+    }
+    
+    public func getSupplier() -> User! {
+        return supplier
     }
 }
