@@ -19,13 +19,13 @@ class BookingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        Model.getInstance().downloadMyDonationsList()
+        Model.getInstance().downloadMyBookings()
     }
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         // Register as notification center observer
-        donationsObserver = NSNotificationCenter.defaultCenter().addObserverForName(getMyDonationNotificationKey,
+        donationsObserver = NSNotificationCenter.defaultCenter().addObserverForName(getBookingsNotificationKey,
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
@@ -42,9 +42,9 @@ class BookingsViewController: UIViewController {
     }
     
     func fillTableView(notification: NSNotification){
-        let myDonationsList = Model.getInstance().getMyDonationsList()
-        tableView.dataSource = myDonationsList
-        tableView.delegate = myDonationsList
+        let bookingsList = Model.getInstance().getMyBookings()
+        tableView.dataSource = bookingsList
+        tableView.delegate = bookingsList
         tableView.reloadData()
     }
     
