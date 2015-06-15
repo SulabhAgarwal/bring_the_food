@@ -35,7 +35,16 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         
         let row = indexPath.row
-        cell.textLabel!.text = myAvailableDonationsList[row].getDescription()
+        let mainLabel = cell.viewWithTag(1000) as! UILabel
+        mainLabel.text = myAvailableDonationsList[row].getDescription()
+        let addressLabel = cell.viewWithTag(1001) as! UILabel
+        addressLabel.text = myAvailableDonationsList[row].getSupplier().getAddress().getLabel()
+        let expirationLabel = cell.viewWithTag(1002) as! UILabel
+        expirationLabel.text = String(myAvailableDonationsList[row].getRemainingDays()) + "d"
+        if(myAvailableDonationsList[row].getRemainingDays() > 10){
+            let alarm = cell.viewWithTag(1003) as! UIImageView
+            alarm.hidden = true
+        }
         
         return cell
     }
