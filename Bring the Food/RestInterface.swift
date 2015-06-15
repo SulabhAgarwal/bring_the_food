@@ -50,7 +50,6 @@ public class RestInterface : NSObject{
         println(self.singleAccessToken)
     }
     
-    
     private func storeCredentials(userId : Int, singleAccessToken:String){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate!
         let managedObjectContext = appDelegate.managedObjectContext
