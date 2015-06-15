@@ -28,6 +28,10 @@ class MainViewController: UIViewController {
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
     }
 
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        // Set light content status bar
+        return UIStatusBarStyle.LightContent
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
