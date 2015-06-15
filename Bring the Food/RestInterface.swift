@@ -16,13 +16,18 @@ public class RestInterface : NSObject{
     private let securityToken: String = "e01228ed4aee2b0cd103fa0962f4589a"
     private var userId: Int = 0
     private var singleAccessToken: String = ""
+    private let imageCache : NSURLCache
     private var imageSession : NSURLSession!
     private static var instance: RestInterface?
     
     // per fare in modo che il costruttore non sia accessibile all'esterno della classe
+    // imposta anche il caching
     private override init() {
+        
+        self.imageCache = NSURLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "ImageDownloadCache")
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        configuration.URLCache = self.imageCache
         self.imageSession = NSURLSession(configuration: configuration)
         super.init()
     }
@@ -34,6 +39,11 @@ public class RestInterface : NSObject{
         return self.instance!
     }
     
+    
+    public func clearImageCache(){
+        self.imageCache.removeAllCachedResponses()
+    }
+    
     //*********************************************************************************
     // CREDENTIALS STORAGE
     //*********************************************************************************
@@ -42,7 +52,7 @@ public class RestInterface : NSObject{
         if self.singleAccessToken != "" {
             return true
         }
-        deleteCredentials()
+        //deleteCredentials()
         return loadCredentials()
     }
     
@@ -52,11 +62,6 @@ public class RestInterface : NSObject{
         storeCredentials(userId, singleAccessToken: singleAccessToken)
         println(self.userId)
         println(self.singleAccessToken)
-        
-        while true {
-            ImageDownloader(url: "http://dev.ict4g.org/btf/system/donations/default/fresh/medium/fresh.jpg",
-                type: ImageType.DONATION).downloadImage()
-        }
     }
     
     private func storeCredentials(userId : Int, singleAccessToken:String){
@@ -211,6 +216,13 @@ public class RestInterface : NSObject{
     
     public func sendLoginData(email:String, password:String){
         
+       /*
+            ImageDownloader(url: "http://dev.ict4g.org/btf/system/donations/default/fresh/medium/fresh.jpg",
+                type: ImageType.DONATION).downloadImage()
+            ModelUpdater.getInstance().notifyDataError(loginResponseNotificationKey)
+      */
+       
+        
         var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/login")!)
         request.HTTPMethod = "POST"
         
@@ -221,7 +233,7 @@ public class RestInterface : NSObject{
             + "}"
         request.HTTPBody = postString.dataUsingEncoding(NSUTF8StringEncoding)
         sendRequest(request, notification_key: loginResponseNotificationKey)
-    }
+}
     
     public func logout(){
         if(isLoggedIn()){
