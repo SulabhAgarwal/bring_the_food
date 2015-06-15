@@ -49,18 +49,31 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
         addressLabel.text = myAvailableDonationsList[row].getSupplier().getAddress().getLabel()
         let expirationLabel = cell.viewWithTag(1002) as! UILabel
         expirationLabel.text = String(myAvailableDonationsList[row].getRemainingDays()) + "d"
-        if(myAvailableDonationsList[row].getRemainingDays() < 10){
+        if(myAvailableDonationsList[row].getRemainingDays() > 20){
             let alarmIcon = cell.viewWithTag(1003) as! UIImageView
             alarmIcon.hidden = true
         }
         let amountLabel = cell.viewWithTag(1004) as! UILabel
         amountLabel.text = "\(myAvailableDonationsList[row].getParcelSize())"
         let parcelUnit = myAvailableDonationsList[row].getParcelUnit()
-        if(parcelUnit != ParcelUnit.KILOGRAMS){
-            let kgIcon = cell.viewWithTag(1005) as! UIImageView
-            kgIcon.hidden = true
+        let kgIcon = cell.viewWithTag(1005) as! UIImageView
+        let ltIcon = cell.viewWithTag(1006) as! UIImageView
+        let portionIcon = cell.viewWithTag(1007) as! UIImageView
+        if(parcelUnit == ParcelUnit.KILOGRAMS){
+            kgIcon.hidden = false
+            ltIcon.hidden = true
+            portionIcon.hidden = true
         }
-
+        else if(parcelUnit == ParcelUnit.LITERS){
+            kgIcon.hidden = true
+            ltIcon.hidden = false
+            portionIcon.hidden = true
+        }
+        else{
+            kgIcon.hidden = true
+            ltIcon.hidden = true
+            portionIcon.hidden = false
+        }
         
         return cell
     }
