@@ -14,7 +14,7 @@ class MainViewController: UIViewController {
     
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
 
-    weak var mailObserver:NSObjectProtocol?
+    weak var donationsObserver: NSObjectProtocol?
 
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         // Register as notification center observer
-        mailObserver = NSNotificationCenter.defaultCenter().addObserverForName(getOthersDonationNotificationKey,
+        donationsObserver = NSNotificationCenter.defaultCenter().addObserverForName(getOthersDonationNotificationKey,
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})

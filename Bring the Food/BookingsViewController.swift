@@ -1,5 +1,5 @@
 //
-//  MyDonationsViewController.swift
+//  BookingsViewController.swift
 //  Bring the Food
 //
 //  Created by federico badini on 15/06/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyDonationsViewController: UIViewController {
+class BookingsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
