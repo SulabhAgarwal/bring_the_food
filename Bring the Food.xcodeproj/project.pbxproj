@@ -59,6 +59,7 @@
 		3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */; };
 		3BFFF2DC1B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
+		B3541BC01B2F496800AA7F65 /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */; };
 		B3FCE0011B2505BB00A86F7E /* SignInStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */; };
@@ -108,6 +109,7 @@
 		3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
 		3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestInterface.swift; sourceTree = "<group>"; };
 		B333D38A1B2042A000DBF44D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
 		B3DED4801B2CA00F00F9808D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStep1ViewController.swift; sourceTree = "<group>"; };
 		B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStep2ViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */,
 				B333D38A1B2042A000DBF44D /* LoginViewController.swift */,
 				B3DED4801B2CA00F00F9808D /* MainViewController.swift */,
+				B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -363,6 +366,7 @@
 				3B2727F31B2CA9BA0064F53A /* MyDonationsList.swift in Sources */,
 				3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */,
 				3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */,
+				B3541BC01B2F496800AA7F65 /* MyDonationsViewController.swift in Sources */,
 				3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */,
 				3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */,
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
