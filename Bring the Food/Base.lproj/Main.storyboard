@@ -776,20 +776,53 @@
                                         </state>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donations List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfE-LA-465">
-                                        <rect key="frame" x="239.5" y="29.5" width="122" height="22.5"/>
+                                        <rect key="frame" x="239" y="29" width="122" height="22.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x3l-pH-ClF">
+                                        <rect key="frame" x="538" y="28" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="UJF-eX-hsm"/>
+                                            <constraint firstAttribute="height" constant="30" id="feR-bC-awH"/>
+                                            <constraint firstAttribute="height" constant="30" id="hg3-Kx-8f9"/>
+                                            <constraint firstAttribute="width" constant="46" id="rfX-hc-QAB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="Filter">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="UJF-eX-hsm"/>
+                                                <exclude reference="feR-bC-awH"/>
+                                            </mask>
+                                        </variation>
+                                        <connections>
+                                            <segue destination="L4a-ke-I24" kind="presentation" identifier="filterContent" id="rvR-Ia-kjO"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.62352941176470589" blue="0.17254901960784313" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="ZwZ-Ow-GBA" firstAttribute="centerY" secondItem="hfE-LA-465" secondAttribute="centerY" id="2zn-jg-9g7"/>
                                     <constraint firstAttribute="height" constant="65" id="Hnp-B2-6hN"/>
+                                    <constraint firstAttribute="bottom" secondItem="x3l-pH-ClF" secondAttribute="bottom" constant="7" id="IOH-Ps-W7f"/>
+                                    <constraint firstAttribute="trailing" secondItem="x3l-pH-ClF" secondAttribute="trailing" constant="16" id="ZMu-Sd-kSu"/>
                                     <constraint firstItem="ZwZ-Ow-GBA" firstAttribute="leading" secondItem="yig-p6-Q0d" secondAttribute="leading" constant="25" id="aYo-2s-oJb"/>
+                                    <constraint firstAttribute="trailing" secondItem="x3l-pH-ClF" secondAttribute="trailing" constant="16" id="kUx-SR-2wT"/>
                                     <constraint firstAttribute="centerY" secondItem="ZwZ-Ow-GBA" secondAttribute="centerY" constant="-8.5" id="qz5-cx-upQ"/>
                                     <constraint firstAttribute="centerX" secondItem="hfE-LA-465" secondAttribute="centerX" id="ysW-v3-wkU"/>
+                                    <constraint firstAttribute="bottom" secondItem="x3l-pH-ClF" secondAttribute="bottom" constant="6" id="zB5-MG-bjs"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ZMu-Sd-kSu"/>
+                                        <exclude reference="zB5-MG-bjs"/>
+                                    </mask>
+                                </variation>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -821,6 +854,95 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7oQ-EJ-9Vz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1645" y="348"/>
+        </scene>
+        <!--Filter View Controller-->
+        <scene sceneID="3iL-BD-tj1">
+            <objects>
+                <viewController id="L4a-ke-I24" customClass="FilterViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="d5h-Ni-uKC"/>
+                        <viewControllerLayoutGuide type="bottom" id="co0-M7-n6l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r2P-33-Z44">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYC-Hr-owx">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aXp-cP-fG8">
+                                        <rect key="frame" x="25" y="30" width="23" height="22"/>
+                                        <state key="normal" image="btf_logo_small">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donations List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cme-bg-2hw">
+                                        <rect key="frame" x="239" y="29" width="122" height="22.5"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5P-g5-fxc">
+                                        <rect key="frame" x="538" y="28" width="46" height="30"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="46" id="1vQ-6D-apA"/>
+                                            <constraint firstAttribute="height" constant="30" id="403-4i-RnO"/>
+                                            <constraint firstAttribute="width" constant="46" id="BLk-7P-sqF"/>
+                                            <constraint firstAttribute="height" constant="30" id="mOt-Xs-HTk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                        <state key="normal" title="Back">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="1vQ-6D-apA"/>
+                                                <exclude reference="mOt-Xs-HTk"/>
+                                            </mask>
+                                        </variation>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960780000005" green="0.62352941179999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="aXp-cP-fG8" firstAttribute="leading" secondItem="ZYC-Hr-owx" secondAttribute="leading" constant="25" id="5bJ-Hp-pw8"/>
+                                    <constraint firstItem="aXp-cP-fG8" firstAttribute="centerY" secondItem="Cme-bg-2hw" secondAttribute="centerY" id="8Ae-HN-Lw0"/>
+                                    <constraint firstAttribute="trailing" secondItem="f5P-g5-fxc" secondAttribute="trailing" constant="16" id="BRe-T8-FWH"/>
+                                    <constraint firstAttribute="centerY" secondItem="aXp-cP-fG8" secondAttribute="centerY" constant="-8.5" id="BnE-Va-FQF"/>
+                                    <constraint firstAttribute="height" constant="65" id="Cnz-Mz-607"/>
+                                    <constraint firstAttribute="bottom" secondItem="f5P-g5-fxc" secondAttribute="bottom" constant="7" id="U77-hb-YNi"/>
+                                    <constraint firstAttribute="bottom" secondItem="f5P-g5-fxc" secondAttribute="bottom" constant="6" id="Ul2-PD-ift"/>
+                                    <constraint firstAttribute="trailing" secondItem="f5P-g5-fxc" secondAttribute="trailing" constant="16" id="bsp-gn-64L"/>
+                                    <constraint firstAttribute="centerX" secondItem="Cme-bg-2hw" secondAttribute="centerX" id="pKd-7A-UDz"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="BRe-T8-FWH"/>
+                                        <exclude reference="Ul2-PD-ift"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsQ-za-oMO">
+                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="buttonPressed:" destination="L4a-ke-I24" eventType="touchUpInside" id="pyd-dO-fN0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZYC-Hr-owx" firstAttribute="leading" secondItem="r2P-33-Z44" secondAttribute="leading" id="22x-ML-tKy"/>
+                            <constraint firstItem="ZYC-Hr-owx" firstAttribute="top" secondItem="r2P-33-Z44" secondAttribute="top" id="LSH-vm-mly"/>
+                            <constraint firstAttribute="trailing" secondItem="ZYC-Hr-owx" secondAttribute="trailing" id="siC-ek-utp"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2T3-GI-ErC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2456" y="348"/>
         </scene>
         <!--My Donations-->
         <scene sceneID="0TE-ke-H9I">

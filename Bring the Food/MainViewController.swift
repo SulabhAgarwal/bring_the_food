@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, FilterProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -41,6 +41,13 @@ class MainViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+        if segue.identifier == "filterContent" {
+            var vc = segue.destinationViewController as! FilterViewController
+            vc.delegate = self
+        }
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -53,4 +60,13 @@ class MainViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func handleFiltering() {
+        println("ciao")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+}
+
+protocol FilterProtocol {
+    func handleFiltering()
 }

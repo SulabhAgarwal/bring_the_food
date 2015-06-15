@@ -59,6 +59,7 @@
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
 		B3541BC01B2F496800AA7F65 /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */; };
+		B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
 		B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */; };
 		B3FCE0011B2505BB00A86F7E /* SignInStep2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */; };
@@ -108,6 +109,7 @@
 		B333D38A1B2042A000DBF44D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
 		B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
+		B3BF98B11B2F97C000E79515 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B3DED4801B2CA00F00F9808D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStep1ViewController.swift; sourceTree = "<group>"; };
 		B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStep2ViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				B3DED4801B2CA00F00F9808D /* MainViewController.swift */,
 				B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */,
 				B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */,
+				B3BF98B11B2F97C000E79515 /* FilterViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
 				3B4AE15A1B2B5ACF00436903 /* Address.swift in Sources */,
 				3B4AE1601B2B5AE700436903 /* BtfNotification.swift in Sources */,
+				B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */,
 				B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */,
 				3B4AE15E1B2B5AE100436903 /* Booking.swift in Sources */,
 				3BD284741B2C01A200D77319 /* ModelUpdater.swift in Sources */,
