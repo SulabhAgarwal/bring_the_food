@@ -12,10 +12,18 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+
     weak var mailObserver:NSObjectProtocol?
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIMainColor], forState:.Selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIMainColor], forState:.Normal)
+        for item in (self.tabBarController?.tabBar.items as NSArray!){
+            (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
+        }
         Model.getInstance().downloadMyDonationsList()
     }
     
@@ -46,4 +54,3 @@ class MainViewController: UIViewController {
     }
     
 }
-

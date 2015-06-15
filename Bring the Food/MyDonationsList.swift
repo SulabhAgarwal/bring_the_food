@@ -38,12 +38,41 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
         let mainLabel = cell.viewWithTag(1000) as! UILabel
         mainLabel.text = myAvailableDonationsList[row].getDescription()
         let addressLabel = cell.viewWithTag(1001) as! UILabel
+        addressLabel.numberOfLines = 2
+        let iOS8 = floor(NSFoundationVersionNumber) > floor(NSFoundationVersionNumber_iOS_7_1)
+        if (iOS8) {
+            // do nothing, it will use automatic via the storyboard
+        } else {
+            let screenWidth = UIScreen.mainScreen().bounds.width
+            addressLabel.preferredMaxLayoutWidth = screenWidth - 89;
+        }
         addressLabel.text = myAvailableDonationsList[row].getSupplier().getAddress().getLabel()
         let expirationLabel = cell.viewWithTag(1002) as! UILabel
         expirationLabel.text = String(myAvailableDonationsList[row].getRemainingDays()) + "d"
-        if(myAvailableDonationsList[row].getRemainingDays() > 10){
-            let alarm = cell.viewWithTag(1003) as! UIImageView
-            alarm.hidden = true
+        if(myAvailableDonationsList[row].getRemainingDays() > 20){
+            let alarmIcon = cell.viewWithTag(1003) as! UIImageView
+            alarmIcon.hidden = true
+        }
+        let amountLabel = cell.viewWithTag(1004) as! UILabel
+        amountLabel.text = "\(myAvailableDonationsList[row].getParcelSize())"
+        let parcelUnit = myAvailableDonationsList[row].getParcelUnit()
+        let kgIcon = cell.viewWithTag(1005) as! UIImageView
+        let ltIcon = cell.viewWithTag(1006) as! UIImageView
+        let portionIcon = cell.viewWithTag(1007) as! UIImageView
+        if(parcelUnit == ParcelUnit.KILOGRAMS){
+            kgIcon.hidden = false
+            ltIcon.hidden = true
+            portionIcon.hidden = true
+        }
+        else if(parcelUnit == ParcelUnit.LITERS){
+            kgIcon.hidden = true
+            ltIcon.hidden = false
+            portionIcon.hidden = true
+        }
+        else{
+            kgIcon.hidden = true
+            ltIcon.hidden = true
+            portionIcon.hidden = false
         }
         
         return cell
