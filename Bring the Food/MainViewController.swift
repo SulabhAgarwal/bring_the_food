@@ -24,13 +24,13 @@ class MainViewController: UIViewController {
         for item in (self.tabBarController?.tabBar.items as NSArray!){
             (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
         }
-        Model.getInstance().downloadMyDonationsList()
+        Model.getInstance().downloadOthersDonationsList()
     }
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         // Register as notification center observer
-        mailObserver = NSNotificationCenter.defaultCenter().addObserverForName(getMyDonationNotificationKey,
+        mailObserver = NSNotificationCenter.defaultCenter().addObserverForName(getOthersDonationNotificationKey,
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
@@ -47,9 +47,9 @@ class MainViewController: UIViewController {
     }
     
     func fillTableView(notification: NSNotification){
-        let myDonationsList = Model.getInstance().getMyDonationsList()
-        tableView.dataSource = myDonationsList
-        tableView.delegate = myDonationsList
+        let othersDonationsList = Model.getInstance().getOthersDonationsList()
+        tableView.dataSource = othersDonationsList
+        tableView.delegate = othersDonationsList
         tableView.reloadData()
     }
     
