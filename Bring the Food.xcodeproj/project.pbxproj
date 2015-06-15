@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3B12DA581B27465E00105A48 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12DA571B27465E00105A48 /* RestTest.swift */; };
 		3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
 		3B12DA5A1B27498700105A48 /* HTTPResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */; };
 		3B132A9F1B28C3A000D8A09F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B132A9E1B28C3A000D8A09F /* Date.swift */; };
@@ -24,6 +23,9 @@
 		3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */; };
 		3B2727F81B2CAAB40064F53A /* BookingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */; };
 		3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E97F01B28B59400506B54 /* NewDonation.swift */; };
+		3B49131C1B2EAE3100173BAE /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B49131B1B2EAE3100173BAE /* ImageType.swift */; };
+		3B49131D1B2EAE7200173BAE /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B49131B1B2EAE3100173BAE /* ImageType.swift */; };
+		3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */; };
 		3B4AE15A1B2B5ACF00436903 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1591B2B5ACF00436903 /* Address.swift */; };
 		3B4AE15C1B2B5ADB00436903 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */; };
 		3B4AE15E1B2B5AE100436903 /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE15D1B2B5AE100436903 /* Booking.swift */; };
@@ -36,6 +38,8 @@
 		3B6F96C11B2DF517004C9503 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96C01B2DF517004C9503 /* ProductType.swift */; };
 		3B6F96C21B2DF52F004C9503 /* ProductType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B6F96C01B2DF517004C9503 /* ProductType.swift */; };
 		3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
+		3B6F96C91B2DFE05004C9503 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12DA571B27465E00105A48 /* RestTest.swift */; };
+		3B8DD8601B2E114E009BC24C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */; };
 		3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */; };
 		3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC327121B2D8E9E002F0DCE /* Credentials.swift */; };
 		3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
@@ -71,7 +75,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3B12DA571B27465E00105A48 /* RestTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestTest.swift; sourceTree = "<group>"; };
+		3B12DA571B27465E00105A48 /* RestTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RestTest.swift; path = "Bring the FoodTests/RestTest.swift"; sourceTree = SOURCE_ROOT; };
 		3B132A9E1B28C3A000D8A09F /* Date.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		3B1B4F951B1EEE6400B9D705 /* Bring the Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bring the Food.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3B1B4F991B1EEE6400B9D705 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 		3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsList.swift; sourceTree = "<group>"; };
 		3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OthersDonationsList.swift; sourceTree = "<group>"; };
 		3B2E97F01B28B59400506B54 /* NewDonation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonation.swift; sourceTree = "<group>"; };
+		3B49131B1B2EAE3100173BAE /* ImageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		3B4AE1591B2B5ACF00436903 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
 		3B4AE15D1B2B5AE100436903 /* Booking.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
@@ -95,6 +100,7 @@
 		3B4AE1651B2B65D200436903 /* Model.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelUnit.swift; sourceTree = "<group>"; };
 		3B6F96C01B2DF517004C9503 /* ProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
+		3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
 		3BC3270E1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bring_the_Food.xcdatamodel; sourceTree = "<group>"; };
 		3BC327121B2D8E9E002F0DCE /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		3BD284731B2C01A200D77319 /* ModelUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUpdater.swift; sourceTree = "<group>"; };
@@ -148,6 +154,7 @@
 			children = (
 				3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */,
 				3BD284731B2C01A200D77319 /* ModelUpdater.swift */,
+				3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */,
 				3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */,
 				3B1B4FA01B1EEE6400B9D705 /* Main.storyboard */,
 				3B1B4FA31B1EEE6400B9D705 /* Images.xcassets */,
@@ -205,6 +212,7 @@
 				3B132A9E1B28C3A000D8A09F /* Date.swift */,
 				3B6F96C01B2DF517004C9503 /* ProductType.swift */,
 				3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */,
+				3B49131B1B2EAE3100173BAE /* ImageType.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -342,6 +350,8 @@
 				3B6F96C11B2DF517004C9503 /* ProductType.swift in Sources */,
 				3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */,
 				3B4AE15C1B2B5ADB00436903 /* ApplicationSettings.swift in Sources */,
+				3B49131C1B2EAE3100173BAE /* ImageType.swift in Sources */,
+				3B8DD8601B2E114E009BC24C /* ImageDownloader.swift in Sources */,
 				B3FCE0011B2505BB00A86F7E /* SignInStep2ViewController.swift in Sources */,
 				3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */,
 				3B1B4F9F1B1EEE6400B9D705 /* SecondViewController.swift in Sources */,
@@ -372,6 +382,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */,
+				3B6F96C91B2DFE05004C9503 /* RestTest.swift in Sources */,
 				3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */,
 				3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */,
 				3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */,
@@ -380,15 +391,16 @@
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
 				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
 				3B2727F61B2CAAA70064F53A /* OthersDonationsList.swift in Sources */,
+				3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */,
 				3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */,
 				3B132AA11B28CE8700D8A09F /* Date.swift in Sources */,
 				3BD2847A1B2C0C9C00D77319 /* ApplicationSettings.swift in Sources */,
 				3BD284771B2C0C8D00D77319 /* StoredDonation.swift in Sources */,
 				3B6F96C21B2DF52F004C9503 /* ProductType.swift in Sources */,
+				3B49131D1B2EAE7200173BAE /* ImageType.swift in Sources */,
 				3B132AA01B28CE8300D8A09F /* NewDonation.swift in Sources */,
 				3B12DA5A1B27498700105A48 /* HTTPResponseData.swift in Sources */,
 				3BC327191B2DB97E002F0DCE /* Credentials.swift in Sources */,
-				3B12DA581B27465E00105A48 /* RestTest.swift in Sources */,
 				3BD284781B2C0C9300D77319 /* User.swift in Sources */,
 				3BD284761B2C0BE700D77319 /* Model.swift in Sources */,
 				3B2727F81B2CAAB40064F53A /* BookingsList.swift in Sources */,

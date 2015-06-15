@@ -16,10 +16,14 @@ public class RestInterface : NSObject{
     private let securityToken: String = "e01228ed4aee2b0cd103fa0962f4589a"
     private var userId: Int = 0
     private var singleAccessToken: String = ""
+    private var imageSession : NSURLSession!
     private static var instance: RestInterface?
     
     // per fare in modo che il costruttore non sia accessibile all'esterno della classe
     private override init() {
+        var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        self.imageSession = NSURLSession(configuration: configuration)
         super.init()
     }
     
@@ -38,7 +42,7 @@ public class RestInterface : NSObject{
         if self.singleAccessToken != "" {
             return true
         }
-        //deleteCredentials()
+        deleteCredentials()
         return loadCredentials()
     }
     
@@ -48,8 +52,12 @@ public class RestInterface : NSObject{
         storeCredentials(userId, singleAccessToken: singleAccessToken)
         println(self.userId)
         println(self.singleAccessToken)
+        
+        while true {
+            ImageDownloader(url: "http://dev.ict4g.org/btf/system/donations/default/fresh/medium/fresh.jpg",
+                type: ImageType.DONATION).downloadImage()
+        }
     }
-    
     
     private func storeCredentials(userId : Int, singleAccessToken:String){
         let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate!
@@ -319,6 +327,18 @@ public class RestInterface : NSObject{
         task.resume()
     }
     
+    public func downloadImage(url:String, imDownloader: ImageDownloader!){
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.HTTPMethod = "GET"
+
+        var task = self.imageSession.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            imDownloader.setImage(data, response: response, error: error)
+            
+        })
+        
+        task.resume()
+    }
     
     
 }

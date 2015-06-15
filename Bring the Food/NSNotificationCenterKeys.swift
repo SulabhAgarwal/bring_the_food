@@ -28,3 +28,6 @@ public let getSettingsResponseNotificationKey = "getSettingsResponse"
 
 // rest notifications - "NOTIFICATIONS" section
 public let getNotificationsResponseNotificationKey = "getNotificationsResponse"
+
+
+public let imageDownloadNotificationKey = "imageDownload"
