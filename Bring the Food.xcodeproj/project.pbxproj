@@ -160,6 +160,7 @@
 				3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */,
 				3B1B4FA01B1EEE6400B9D705 /* Main.storyboard */,
 				3B1B4FA31B1EEE6400B9D705 /* Images.xcassets */,
+				B3541BC11B2F67F900AA7F65 /* Delegate */,
 				3B6F96C61B2DFBEE004C9503 /* ViewControllers */,
 				3B6F96C51B2DFB49004C9503 /* Persistence */,
 				3B6F96C41B2DFB2A004C9503 /* Utils */,
@@ -198,9 +199,6 @@
 			isa = PBXGroup;
 			children = (
 				3B4AE1651B2B65D200436903 /* Model.swift */,
-				3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */,
-				3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */,
-				3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -246,6 +244,16 @@
 				B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */,
 			);
 			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B3541BC11B2F67F900AA7F65 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */,
+				3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */,
+				3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
