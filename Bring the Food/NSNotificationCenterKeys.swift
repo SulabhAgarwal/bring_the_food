@@ -30,4 +30,4 @@ public let getSettingsResponseNotificationKey = "getSettingsResponse"
 public let getNotificationsResponseNotificationKey = "getNotificationsResponse"
 
 
-public let imageReceivedNotificationKey = "imageResponse"
+public let imageDownloadNotificationKey = "imageDownload"

@@ -7,40 +7,56 @@
 //
 
 import Foundation
+import UIKit
 
-public class ImageDownloader : NSObject{
+
+/*
+    Esegue il download dalla url con cui è stato inizializzato.
+    La politica di caching assicura che ogni immagine sia scaricata solo una volta dal server.
+    Nel caso dovesse fallire, recupera le immagini previste di default.
+    Fatto questo, invia una notifica in cui segnala che l'immagine è disponibile.
+*/
+
+public class ImageDownloader{
     
-    public func getImage(){
-        //
-        var request = NSMutableURLRequest(URL: NSURL(string: "http://dev.ict4g.org/btf/system/donations/default/fresh/medium/fresh.jpg")!)
-        request.HTTPMethod = "GET"
-        let notification_key = imageReceivedNotificationKey
+    private let url:String!
+    private let type: ImageType!
+    private var image: UIImage?
+    
+    public init(url:String!, type: ImageType!){
+        self.url = url
+        self.type = type
+    }
+    
+    public func downloadImage(){
+        RestInterface.getInstance().downloadImage(self.url, imDownloader: self)
+    }
+    
+    public func setImage(data: NSData!, response: NSURLResponse!, error:NSError!){
         
-        //preparo il dialogo con il server
-        var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
-        let session = NSURLSession(configuration: configuration)
         
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            
-            if(error == nil){
-                
-                let response_status = (response as! NSHTTPURLResponse).statusCode
-                
-                // attenzione: in swift, gli switch NON hanno
-                // l'implicit fallthrough, e NON necessitano dei break
-                switch response_status {
-                case 200, 201, 204: ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
-                case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
-                default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
-                }
+            if(error == nil && data != nil){
+                //immagine correttamente disponibile
+                self.image = UIImage(data: data)
+                println("ok")
             }
             else{
-                // error != nil
-                ModelUpdater.getInstance().notifyDeviceError(notification_key)
+                if self.type == ImageType.AVATAR {
+                    //carico l'immagine di default per utenti
+                    
+                } else {
+                    //carico l'immagine di default per donazioni
+                    
+                }
+                
             }
-        })
-        
-        task.resume()
+            
+            // In ogni caso, qui mando la stessa notifica
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                imageDownloadNotificationKey,
+                object: self)
+
     }
+
 }
+
