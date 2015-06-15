@@ -34,6 +34,7 @@ public class ImageDownloader{
     
     public func setImage(data: NSData!, response: NSURLResponse!, error:NSError!){
         
+            println("down")
         
             if(error == nil && data != nil){
                 //immagine correttamente disponibile
