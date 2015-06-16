@@ -14,7 +14,6 @@ public let donationDeletedNotificationKey = "donationDeletedResponse"
 public let getSingleDonationNotificationKey = "getSingleDonationResponse"
 public let getOthersDonationNotificationKey = "getOthersDonationResponse"
 public let getMyDonationNotificationKey = "getMyDonationResponse"
-// NOTIFICA AGGIUNTA DA FEDE
 public let getBookingsNotificationKey = "getBookingsReponse"
 
 

@@ -74,8 +74,9 @@ public class Model : NSObject{
     }
     
     
-    //TODO
-    public func downloadMyBookings(){}
+    public func downloadMyBookings(){
+        RestInterface.getInstance().getBookings()
+    }
     
     public func getMyBookings() -> BookingsList?{
         return self.myBookings
