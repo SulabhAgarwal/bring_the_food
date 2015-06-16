@@ -11,32 +11,37 @@ import Foundation
 
 public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    private var myAvailableDonationsList: [StoredDonation]!
-    private var myBookedDonationsList: [StoredDonation]!
-    private var myHistoricDonationsList: [StoredDonation]!
+    private var donations: [DonationsList]! = []
     let textCellIdentifier = "TextCell"
     
     public init(myAvailableDonationsList: [StoredDonation]!, myBookedDonationsList: [StoredDonation]!, myHistoricDonationsList: [StoredDonation]!){
-        self.myAvailableDonationsList = myAvailableDonationsList
-        self.myBookedDonationsList = myBookedDonationsList
-        self.myHistoricDonationsList = myHistoricDonationsList
+        donations.append(DonationsList(donationName: "Available", donationList: myAvailableDonationsList))
+        donations.append(DonationsList(donationName: "Booked", donationList: myBookedDonationsList))
+        donations.append(DonationsList(donationName: "Historic", donationList: myHistoricDonationsList))
     }
     
     // MARK:  UITextFieldDelegate Methods
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return donations[section].donationName
+    }
+    
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return donations.count
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myAvailableDonationsList.count
+        let donationsInSection = donations[section]
+        return donationsInSection.donationsList.count
     }
     
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(textCellIdentifier, forIndexPath: indexPath) as! UITableViewCell
         
-        let row = indexPath.row
+        let donationsInSection = donations[indexPath.section]
+        let donation = donationsInSection.donationsList[indexPath.row]
+        
         let mainLabel = cell.viewWithTag(1000) as! UILabel
-        mainLabel.text = myAvailableDonationsList[row].getDescription()
+        mainLabel.text = donation.getDescription()
         let addressLabel = cell.viewWithTag(1001) as! UILabel
         addressLabel.numberOfLines = 2
         let iOS8 = floor(NSFoundationVersionNumber) > floor(NSFoundationVersionNumber_iOS_7_1)
@@ -46,16 +51,16 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
             let screenWidth = UIScreen.mainScreen().bounds.width
             addressLabel.preferredMaxLayoutWidth = screenWidth - 89;
         }
-        addressLabel.text = myAvailableDonationsList[row].getSupplier().getAddress().getLabel()
+        addressLabel.text = donation.getSupplier().getAddress().getLabel()
         let expirationLabel = cell.viewWithTag(1002) as! UILabel
-        expirationLabel.text = String(myAvailableDonationsList[row].getRemainingDays()) + "d"
-        if(myAvailableDonationsList[row].getRemainingDays() > 20){
+        expirationLabel.text = String(donation.getRemainingDays()) + "d"
+        if(donation.getRemainingDays() > 20){
             let alarmIcon = cell.viewWithTag(1003) as! UIImageView
             alarmIcon.hidden = true
         }
         let amountLabel = cell.viewWithTag(1004) as! UILabel
-        amountLabel.text = "\(myAvailableDonationsList[row].getParcelSize())"
-        let parcelUnit = myAvailableDonationsList[row].getParcelUnit()
+        amountLabel.text = "\(donation.getParcelSize())"
+        let parcelUnit = donation.getParcelUnit()
         let kgIcon = cell.viewWithTag(1005) as! UIImageView
         let ltIcon = cell.viewWithTag(1006) as! UIImageView
         let portionIcon = cell.viewWithTag(1007) as! UIImageView
@@ -83,7 +88,18 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let row = indexPath.row
-        println(myAvailableDonationsList[row])
+        println(row)
     }
     
+}
+
+struct DonationsList {
+    
+    var donationsList : [StoredDonation]!
+    var donationName: String
+
+    init(donationName: String, donationList: [StoredDonation]!){
+        self.donationName = donationName
+        self.donationsList = donationList
+    }
 }

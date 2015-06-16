@@ -8,13 +8,13 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, FilterProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
 
-    weak var mailObserver:NSObjectProtocol?
+    weak var donationsObserver: NSObjectProtocol?
 
     
     override func viewDidLoad() {
@@ -30,7 +30,7 @@ class MainViewController: UIViewController {
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         // Register as notification center observer
-        mailObserver = NSNotificationCenter.defaultCenter().addObserverForName(getOthersDonationNotificationKey,
+        donationsObserver = NSNotificationCenter.defaultCenter().addObserverForName(getOthersDonationNotificationKey,
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
@@ -39,6 +39,13 @@ class MainViewController: UIViewController {
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         // Set light content status bar
         return UIStatusBarStyle.LightContent
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+        if segue.identifier == "filterContent" {
+            var vc = segue.destinationViewController as! FilterViewController
+            vc.delegate = self
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,4 +60,13 @@ class MainViewController: UIViewController {
         tableView.reloadData()
     }
     
+    func handleFiltering() {
+        println("ciao")
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+}
+
+protocol FilterProtocol {
+    func handleFiltering()
 }
