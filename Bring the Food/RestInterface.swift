@@ -180,6 +180,18 @@ public class RestInterface : NSObject{
     // BOOKINGS
     //*********************************************************************************
     
+    public func getBookings(){
+        if(isLoggedIn()){
+            var parameters:String = "?user_credentials=\(singleAccessToken)"
+            var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/bookings/" + parameters)!)
+            request.HTTPMethod = "GET"
+            sendRequest(request, notification_key: getBookingsNotificationKey)
+        }
+        else{
+            ModelUpdater.getInstance().notifyNotLoggedInError(getBookingsNotificationKey)
+        }
+    }
+    
     //*********************************************************************************
     // USERS
     //*********************************************************************************

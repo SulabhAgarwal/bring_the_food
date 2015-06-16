@@ -242,8 +242,10 @@ public class ModelUpdater : NSObject{
             let retractedEmail = json.valueForKeyPath("result.notify_me_when.retracted.email") as! Bool!
             let collectedSms = json.valueForKeyPath("result.notify_me_when.collected.sms") as! Bool!
             let collectedEmail = json.valueForKeyPath("result.notify_me_when.collected.email") as! Bool!
-
-            
+        case getBookingsNotificationKey :
+            var bookings = [Booking]()
+            let bookingsList = BookingsList(bookingsList: bookings)
+            Model.getInstance().setMyBookings(bookingsList)
             
         default: break
             
