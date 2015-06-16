@@ -15,6 +15,12 @@ class MainViewController: UIViewController, FilterProtocol {
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
 
     weak var donationsObserver: NSObjectProtocol?
+    lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
+        
+        return refreshControl
+        }()
 
     
     override func viewDidLoad() {
@@ -24,6 +30,7 @@ class MainViewController: UIViewController, FilterProtocol {
         for item in (self.tabBarController?.tabBar.items as NSArray!){
             (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
         }
+        self.tableView.addSubview(self.refreshControl)
     }
     
     override func viewWillAppear(animated:Bool) {
@@ -63,6 +70,11 @@ class MainViewController: UIViewController, FilterProtocol {
         tableView.dataSource = othersDonationsList
         tableView.delegate = othersDonationsList
         tableView.reloadData()
+        refreshControl.endRefreshing()
+    }
+    
+    func handleRefresh(refreshControl: UIRefreshControl) {
+        Model.getInstance().downloadOthersDonationsList()
     }
     
     func handleFiltering() {

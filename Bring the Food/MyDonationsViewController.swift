@@ -15,7 +15,7 @@ class MyDonationsViewController: UIViewController {
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     
     weak var donationsObserver:NSObjectProtocol?
-    
+
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
@@ -48,5 +48,5 @@ class MyDonationsViewController: UIViewController {
         tableView.delegate = myDonationsList
         tableView.reloadData()
     }
-    
+
 }
