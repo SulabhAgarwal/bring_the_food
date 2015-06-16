@@ -27,12 +27,13 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
         // Display a message when the table is empty
         let emptyLabel: UILabel = UILabel(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
             
-        emptyLabel.text = "No data is currently available. Please pull down to refresh."
+        emptyLabel.text = "No donations booked"
         emptyLabel.textColor = UIColor.blackColor()
         emptyLabel.numberOfLines = 0
         emptyLabel.textAlignment = NSTextAlignment.Center
-            
+        emptyLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
         tableView.backgroundView = emptyLabel;
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
         return 0
     }
     
