@@ -20,7 +20,20 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
     
     // MARK:  UITextFieldDelegate Methods
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        if(bookingsList.count > 0){
+            return 1
+        }
+        println("vuoto")
+        // Display a message when the table is empty
+        let emptyLabel: UILabel = UILabel(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
+            
+        emptyLabel.text = "No data is currently available. Please pull down to refresh."
+        emptyLabel.textColor = UIColor.blackColor()
+        emptyLabel.numberOfLines = 0
+        emptyLabel.textAlignment = NSTextAlignment.Center
+            
+        tableView.backgroundView = emptyLabel;
+        return 0
     }
     
     public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -15,12 +15,7 @@ class MyDonationsViewController: UIViewController {
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     
     weak var donationsObserver:NSObjectProtocol?
-    
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        Model.getInstance().downloadMyDonationsList()
-    }
+
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
@@ -29,6 +24,12 @@ class MyDonationsViewController: UIViewController {
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
+        Model.getInstance().downloadMyDonationsList()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(donationsObserver!)
+        super.viewWillDisappear(animated)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -47,5 +48,5 @@ class MyDonationsViewController: UIViewController {
         tableView.delegate = myDonationsList
         tableView.reloadData()
     }
-    
+
 }
