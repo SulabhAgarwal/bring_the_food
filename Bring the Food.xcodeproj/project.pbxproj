@@ -55,8 +55,8 @@
 		3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */; };
 		3BFFF2DC1B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
-		B3541BC01B2F496800AA7F65 /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */; };
+		B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
 		B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */; };
@@ -360,6 +360,7 @@
 				3B8DD8601B2E114E009BC24C /* ImageDownloader.swift in Sources */,
 				B3FCE0011B2505BB00A86F7E /* SignInStep2ViewController.swift in Sources */,
 				3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */,
+				B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */,
 				3BC327181B2DB8D0002F0DCE /* RestInterface.swift in Sources */,
 				3B2727F21B2CA9BA0064F53A /* BookingsList.swift in Sources */,
 				3B4AE1621B2B5AF800436903 /* User.swift in Sources */,
