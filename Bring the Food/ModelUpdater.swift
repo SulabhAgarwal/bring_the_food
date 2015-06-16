@@ -120,7 +120,8 @@ public class ModelUpdater : NSObject{
                 let donDescription = e["description"] as! String!
                 let donParcelSize = e["parcel_size"] as! Float!
                 let donParcelUnit = ParcelUnitFactory.getParcUnitFromString(e["unit"] as! String!)
-                let donProductDate = Date(dateString: (e["product_date"] as! String!))
+                let untilDate = e["until"] as! String!
+                let donProductDate = Date(dateString: prefix(untilDate, 10))
                 let donProductType = ProductTypeFactory.getProdTypeFromString(e["product_type"] as! String!)
                 let donPhotoUrl = e.valueForKeyPath("photo.medium") as! String!
                 
