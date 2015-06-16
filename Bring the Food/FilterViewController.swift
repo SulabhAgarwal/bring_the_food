@@ -20,4 +20,9 @@ class FilterViewController: UIViewController {
     @IBAction func buttonPressed(sender: AnyObject) {
         self.delegate?.handleFiltering()
     }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        // Set light content status bar
+        return UIStatusBarStyle.LightContent
+    }
 }

@@ -24,7 +24,6 @@ class MainViewController: UIViewController, FilterProtocol {
         for item in (self.tabBarController?.tabBar.items as NSArray!){
             (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
         }
-        Model.getInstance().downloadOthersDonationsList()
     }
     
     override func viewWillAppear(animated:Bool) {
@@ -34,6 +33,12 @@ class MainViewController: UIViewController, FilterProtocol {
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
+        Model.getInstance().downloadOthersDonationsList()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(donationsObserver!)
+        super.viewWillDisappear(animated)
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -61,7 +66,6 @@ class MainViewController: UIViewController, FilterProtocol {
     }
     
     func handleFiltering() {
-        println("ciao")
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

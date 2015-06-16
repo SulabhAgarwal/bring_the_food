@@ -31,6 +31,10 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     // Keyboard height
     var kbHeight: CGFloat!
     
+    weak var loginObserver:NSObjectProtocol!
+    weak var keyboardWillShowObserver:NSObjectProtocol!
+    weak var keyboardWillHideObserver:NSObjectProtocol!
+    var tapRecognizer:UITapGestureRecognizer!
     
     // OVERRIDES
     
@@ -43,30 +47,29 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         // Register as notification center observer
-        NSNotificationCenter.defaultCenter().addObserverForName(loginResponseNotificationKey,
+        loginObserver = NSNotificationCenter.defaultCenter().addObserverForName(loginResponseNotificationKey,
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.loginResponseHandler(notification)})
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification,
+        keyboardWillShowObserver = NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillShowNotification,
             object: nil, queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.keyboardWillShow(notification)})
-        NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification,
+        keyboardWillHideObserver = NSNotificationCenter.defaultCenter().addObserverForName(UIKeyboardWillHideNotification,
             object: nil, queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.keyboardWillHide(notification)})
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
-        // Recognize tap on the vieww
-        let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTapOnView:")
+        tapRecognizer = UITapGestureRecognizer(target: self, action: "handleTapOnView:")
         tapRecognizer.numberOfTapsRequired = 1
         self.view.addGestureRecognizer(tapRecognizer)
     }
     
     override func viewWillDisappear(animated: Bool) {
         // Unregister as notification center observer
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NSNotificationCenter.defaultCenter().removeObserver(loginObserver!)
+        NSNotificationCenter.defaultCenter().removeObserver(keyboardWillShowObserver!)
+        NSNotificationCenter.defaultCenter().removeObserver(keyboardWillHideObserver!)
+        self.view.removeGestureRecognizer(tapRecognizer)
         super.viewWillDisappear(animated)
+
     }
     
     override func didReceiveMemoryWarning() {

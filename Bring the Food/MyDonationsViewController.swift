@@ -17,11 +17,6 @@ class MyDonationsViewController: UIViewController {
     weak var donationsObserver:NSObjectProtocol?
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        Model.getInstance().downloadMyDonationsList()
-    }
-    
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
         // Register as notification center observer
@@ -29,6 +24,12 @@ class MyDonationsViewController: UIViewController {
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.fillTableView(notification)})
+        Model.getInstance().downloadMyDonationsList()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        NSNotificationCenter.defaultCenter().removeObserver(donationsObserver!)
+        super.viewWillDisappear(animated)
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
