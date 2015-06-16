@@ -23,6 +23,8 @@
 		3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */; };
 		3B2727F81B2CAAB40064F53A /* BookingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */; };
 		3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E97F01B28B59400506B54 /* NewDonation.swift */; };
+		3B3441451B300B420080360D /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3441441B300B420080360D /* NSUserDefaultsKeys.swift */; };
+		3B3441461B300F060080360D /* NSUserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B3441441B300B420080360D /* NSUserDefaultsKeys.swift */; };
 		3B49131C1B2EAE3100173BAE /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B49131B1B2EAE3100173BAE /* ImageType.swift */; };
 		3B49131D1B2EAE7200173BAE /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B49131B1B2EAE3100173BAE /* ImageType.swift */; };
 		3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */; };
@@ -40,12 +42,9 @@
 		3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
 		3B6F96C91B2DFE05004C9503 /* RestTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12DA571B27465E00105A48 /* RestTest.swift */; };
 		3B8DD8601B2E114E009BC24C /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */; };
-		3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */; };
-		3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC327121B2D8E9E002F0DCE /* Credentials.swift */; };
 		3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B1B4F9A1B1EEE6400B9D705 /* AppDelegate.swift */; };
 		3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */; };
 		3BC327181B2DB8D0002F0DCE /* RestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */; };
-		3BC327191B2DB97E002F0DCE /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC327121B2D8E9E002F0DCE /* Credentials.swift */; };
 		3BD284741B2C01A200D77319 /* ModelUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD284731B2C01A200D77319 /* ModelUpdater.swift */; };
 		3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD284731B2C01A200D77319 /* ModelUpdater.swift */; };
 		3BD284761B2C0BE700D77319 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1651B2B65D200436903 /* Model.swift */; };
@@ -55,7 +54,6 @@
 		3BD2847A1B2C0C9C00D77319 /* ApplicationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */; };
 		3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE1591B2B5ACF00436903 /* Address.swift */; };
 		3BD2847C1B2C0CA200D77319 /* BtfNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */; };
-		3BF334DC1B2DCA06002C0A78 /* Bring_the_Food.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */; };
 		3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */; };
 		3BFFF2DC1B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
@@ -90,6 +88,7 @@
 		3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsList.swift; sourceTree = "<group>"; };
 		3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OthersDonationsList.swift; sourceTree = "<group>"; };
 		3B2E97F01B28B59400506B54 /* NewDonation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewDonation.swift; sourceTree = "<group>"; };
+		3B3441441B300B420080360D /* NSUserDefaultsKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSUserDefaultsKeys.swift; sourceTree = "<group>"; };
 		3B49131B1B2EAE3100173BAE /* ImageType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 		3B4AE1591B2B5ACF00436903 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationSettings.swift; sourceTree = "<group>"; };
@@ -101,8 +100,6 @@
 		3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParcelUnit.swift; sourceTree = "<group>"; };
 		3B6F96C01B2DF517004C9503 /* ProductType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductType.swift; sourceTree = "<group>"; };
 		3B8DD85F1B2E114E009BC24C /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
-		3BC3270E1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Bring_the_Food.xcdatamodel; sourceTree = "<group>"; };
-		3BC327121B2D8E9E002F0DCE /* Credentials.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		3BD284731B2C01A200D77319 /* ModelUpdater.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelUpdater.swift; sourceTree = "<group>"; };
 		3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponseData.swift; sourceTree = "<group>"; };
 		3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
@@ -213,6 +210,7 @@
 				3B6F96C01B2DF517004C9503 /* ProductType.swift */,
 				3B6F96BD1B2DF379004C9503 /* ParcelUnit.swift */,
 				3B49131B1B2EAE3100173BAE /* ImageType.swift */,
+				3B3441441B300B420080360D /* NSUserDefaultsKeys.swift */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -220,14 +218,12 @@
 		3B6F96C51B2DFB49004C9503 /* Persistence */ = {
 			isa = PBXGroup;
 			children = (
-				3BC327121B2D8E9E002F0DCE /* Credentials.swift */,
 				3B2E97F01B28B59400506B54 /* NewDonation.swift */,
 				3B4AE1631B2B5B2100436903 /* StoredDonation.swift */,
 				3B4AE15D1B2B5AE100436903 /* Booking.swift */,
 				3B4AE1611B2B5AF800436903 /* User.swift */,
 				3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */,
 				3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */,
-				3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */,
 			);
 			name = Persistence;
 			sourceTree = "<group>";
@@ -348,7 +344,6 @@
 				3B4AE1641B2B5B2100436903 /* StoredDonation.swift in Sources */,
 				B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */,
 				3B6F96C11B2DF517004C9503 /* ProductType.swift in Sources */,
-				3BC327131B2D8E9E002F0DCE /* Credentials.swift in Sources */,
 				3B4AE15C1B2B5ADB00436903 /* ApplicationSettings.swift in Sources */,
 				3B49131C1B2EAE3100173BAE /* ImageType.swift in Sources */,
 				3B8DD8601B2E114E009BC24C /* ImageDownloader.swift in Sources */,
@@ -362,10 +357,10 @@
 				B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */,
 				3B2727F31B2CA9BA0064F53A /* MyDonationsList.swift in Sources */,
 				3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */,
-				3BC3270F1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld in Sources */,
 				3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */,
 				3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */,
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
+				3B3441451B300B420080360D /* NSUserDefaultsKeys.swift in Sources */,
 				3B4AE15A1B2B5ACF00436903 /* Address.swift in Sources */,
 				3B4AE1601B2B5AE700436903 /* BtfNotification.swift in Sources */,
 				B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */,
@@ -386,7 +381,7 @@
 				3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */,
 				3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */,
 				3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */,
-				3BF334DC1B2DCA06002C0A78 /* Bring_the_Food.xcdatamodeld in Sources */,
+				3B3441461B300F060080360D /* NSUserDefaultsKeys.swift in Sources */,
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
 				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
@@ -400,7 +395,6 @@
 				3B49131D1B2EAE7200173BAE /* ImageType.swift in Sources */,
 				3B132AA01B28CE8300D8A09F /* NewDonation.swift in Sources */,
 				3B12DA5A1B27498700105A48 /* HTTPResponseData.swift in Sources */,
-				3BC327191B2DB97E002F0DCE /* Credentials.swift in Sources */,
 				3BD284781B2C0C9300D77319 /* User.swift in Sources */,
 				3BD284761B2C0BE700D77319 /* Model.swift in Sources */,
 				3B2727F81B2CAAB40064F53A /* BookingsList.swift in Sources */,
@@ -604,19 +598,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		3BC3270D1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				3BC3270E1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodel */,
-			);
-			currentVersion = 3BC3270E1B2D8C53002F0DCE /* Bring_the_Food.xcdatamodel */;
-			path = Bring_the_Food.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 3B1B4F8D1B1EEE6400B9D705 /* Project object */;
 }

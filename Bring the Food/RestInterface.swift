@@ -7,8 +7,6 @@
 //
 
 import Foundation
-import UIKit
-import CoreData
 
 public class RestInterface : NSObject{
     
@@ -60,67 +58,36 @@ public class RestInterface : NSObject{
         self.userId = userId
         self.singleAccessToken = singleAccessToken
         storeCredentials(userId, singleAccessToken: singleAccessToken)
-        println(self.userId)
-        println(self.singleAccessToken)
     }
     
     private func storeCredentials(userId : Int, singleAccessToken:String){
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate!
-        let managedObjectContext = appDelegate.managedObjectContext
-        
-        let ent = NSEntityDescription.entityForName("Credentials", inManagedObjectContext: managedObjectContext!)
-        var newCredentials = Credentials(entity: ent!, insertIntoManagedObjectContext: managedObjectContext)
-        
-        newCredentials.singleAccessToken = singleAccessToken
-        newCredentials.userId = userId
-        
-        managedObjectContext?.save(nil)
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(singleAccessToken, forKey: singleAccessTokenKey)
+        defaults.setInteger(userId, forKey: userIdKey)
     }
     
     // Ritorna vero se il caricamento delle credenziali ha avuto successo, falso altrimenti
     private func loadCredentials() -> Bool {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate!
-        let managedObjectContext = appDelegate.managedObjectContext
-        
-        let request = NSFetchRequest(entityName: "Credentials")
-        request.returnsObjectsAsFaults = false
-        
-        var results = managedObjectContext!.executeFetchRequest(request, error: nil)
-        
-        if results!.count > 0 {
-            println(results![0])
-            let cred = results![0] as! Credentials
-            /*
-            let manCred = results![0] as! NSManagedObject
-            let cred = manCred as! Credentials
-*/
-            self.singleAccessToken = cred.singleAccessToken
-            self.userId = Int(cred.userId)
-            println(self.userId)
-            println(self.singleAccessToken)
-            return true
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let singleAccessToken = defaults.stringForKey(singleAccessTokenKey)
+        let userId = defaults.integerForKey(userIdKey)
+        if singleAccessToken != nil
+        {
+            self.singleAccessToken = singleAccessToken!
+            self.userId = userId
         }
-        
-        return false
+        return (self.singleAccessToken != "") && (self.userId != 0)
     }
     
     // Da chiamare in seguito al logout, cancella tutte le credenziali salvate
     private func deleteCredentials() {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate!
-        let managedObjectContext = appDelegate.managedObjectContext
         
-        let request = NSFetchRequest(entityName: "Credentials")
-        request.returnsObjectsAsFaults = false
-        
-        var results : NSArray = managedObjectContext!.executeFetchRequest(request, error: nil)!
-        
-        for cred in results {
-            managedObjectContext?.deleteObject(cred as! NSManagedObject)
-        }
-        
-        managedObjectContext?.save(nil)
-        
-        return
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject("", forKey: singleAccessTokenKey)
+        defaults.setInteger(0, forKey: userIdKey)
+
     }
     
     
