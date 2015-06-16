@@ -38,9 +38,12 @@ public class RestInterface : NSObject{
     }
     
     
-    public func clearImageCache(){
+    private func clearImageCache(){
         self.imageCache.removeAllCachedResponses()
     }
+    
+    //TODO
+    private func clearRequestCache(){}
     
     //*********************************************************************************
     // CREDENTIALS STORAGE
@@ -273,6 +276,22 @@ public class RestInterface : NSObject{
     //*********************************************************************************
     // PRIVATE
     //*********************************************************************************
+    public func downloadImage(url:String, imDownloader: ImageDownloader!){
+        
+        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
+        request.HTTPMethod = "GET"
+        
+        var task = self.imageSession.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
+            imDownloader.setImage(data, response: response, error: error)
+            
+        })
+        
+        task.resume()
+    }
+    
+    //*********************************************************************************
+    // PRIVATE
+    //*********************************************************************************
     
     private func sendRequest(request : NSMutableURLRequest, notification_key : String){
         
@@ -306,17 +325,53 @@ public class RestInterface : NSObject{
         task.resume()
     }
     
-    public func downloadImage(url:String, imDownloader: ImageDownloader!){
+    
+    private func sendCachedRequest(request : NSMutableURLRequest, notification_key : String){
         
-        var request = NSMutableURLRequest(URL: NSURL(string: url)!)
-        request.HTTPMethod = "GET"
-
-        var task = self.imageSession.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            imDownloader.setImage(data, response: response, error: error)
+        //completo l'header
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Token token=\"\(securityToken)\"", forHTTPHeaderField: "Authorization")
+        
+        //preparo il dialogo con il server
+        var session = NSURLSession.sharedSession()
+        
+        //TODO: cambiare la sessione con una sessione che mantenga la cache, e salvare tale sessione come variabile di 
+        // classe, come fatto con la cache di immagini.
+        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             
+            if(error == nil){
+                
+                let response_status = (response as! NSHTTPURLResponse).statusCode
+                
+                // attenzione: in swift, gli switch NON hanno
+                // l'implicit fallthrough, e NON necessitano dei break
+                switch response_status {
+                case 200, 201, 204:
+                    // salvo il risultato in cache
+                    ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
+                case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
+                default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
+                }
+            }
+            else{
+                // error != nil
+                ModelUpdater.getInstance().notifyDeviceError(notification_key)
+            }
         })
         
         task.resume()
+    }
+    
+    private func lookForResponseInCache(/*prende come parametri la url e il tipo di errore*/){
+        // ricerco la url nella cache
+        
+        // se trovo, invio notify success
+        
+        
+        // se non trovo il risultato in cache
+        // se l'errore era di device chiamo notify device error
+        // se l'errore era di network chiamo notify network error
+        
     }
     
     
