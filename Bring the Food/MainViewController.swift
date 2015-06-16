@@ -17,8 +17,9 @@ class MainViewController: UIViewController, FilterProtocol {
     weak var donationsObserver: NSObjectProtocol?
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
+        let refreshControlColor = UIColor(red: 0xfe/255, green: 0xfa/255, blue: 0xf3/255, alpha: 1)
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
-        
+        refreshControl.backgroundColor = refreshControlColor
         return refreshControl
         }()
 

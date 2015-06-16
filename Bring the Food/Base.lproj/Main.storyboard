@@ -1173,10 +1173,10 @@
             </objects>
             <point key="canvasLocation" x="1645" y="1764"/>
         </scene>
-        <!--Bookings-->
+        <!--My Donations-->
         <scene sceneID="xcD-bU-Y51">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="YPW-pJ-Ze2" userLabel="Bookings" customClass="MyDonationsViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="YPW-pJ-Ze2" userLabel="My Donations" customClass="MyDonationsViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="T9T-UP-3fh"/>
                         <viewControllerLayoutGuide type="bottom" id="b4W-yj-Os1"/>
