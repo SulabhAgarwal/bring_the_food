@@ -23,17 +23,7 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
         if(bookingsList.count > 0){
             return 1
         }
-        println("vuoto")
-        // Display a message when the table is empty
-        let emptyLabel: UILabel = UILabel(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
-            
-        emptyLabel.text = "No donations booked"
-        emptyLabel.textColor = UIColor.blackColor()
-        emptyLabel.numberOfLines = 0
-        emptyLabel.textAlignment = NSTextAlignment.Center
-        emptyLabel.font = UIFont(name: "HelveticaNeue-Light", size: 20)
-        tableView.backgroundView = emptyLabel;
-        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
+        createEmptyView(tableView)
         return 0
     }
     
@@ -94,6 +84,60 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
         
         let row = indexPath.row
         println(bookingsList[row])
+    }
+    
+    func createEmptyView(tableView: UITableView){
+        // Display a message when the table is empty
+        let emptyTableView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
+        let mainMessageLabel: UILabel = UILabel()
+        mainMessageLabel.text = "No donations"
+        mainMessageLabel.textColor = UIColor.lightGrayColor()
+        mainMessageLabel.numberOfLines = 1
+        mainMessageLabel.textAlignment = .Center
+        mainMessageLabel.font = UIFont(name: "HelveticaNeue-Light", size: 22)
+        mainMessageLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        var widthConstraint = NSLayoutConstraint(item: mainMessageLabel, attribute: .Width, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 250)
+        mainMessageLabel.addConstraint(widthConstraint)
+        
+        var heightConstraint = NSLayoutConstraint(item: mainMessageLabel, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100)
+        mainMessageLabel.addConstraint(heightConstraint)
+        
+        var xConstraint = NSLayoutConstraint(item: mainMessageLabel, attribute: .CenterX, relatedBy: .Equal, toItem: emptyTableView, attribute: .CenterX, multiplier: 1, constant: 0)
+        
+        var yConstraint = NSLayoutConstraint(item: mainMessageLabel, attribute: .CenterY, relatedBy: .Equal, toItem: emptyTableView, attribute: .CenterY, multiplier: 1, constant: 0)
+        
+        emptyTableView.addSubview(mainMessageLabel)
+        emptyTableView.addConstraint(xConstraint)
+        emptyTableView.addConstraint(yConstraint)
+        
+        let secondaryMessageLabel = UILabel()
+        secondaryMessageLabel.text = "Pull down to refresh"
+        secondaryMessageLabel.textColor = UIColor.lightGrayColor()
+        secondaryMessageLabel.numberOfLines = 1
+        secondaryMessageLabel.textAlignment = .Center
+        secondaryMessageLabel.font = UIFont(name: "HelveticaNeue-Light", size: 13)
+        secondaryMessageLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        widthConstraint = NSLayoutConstraint(item: secondaryMessageLabel, attribute: .Width, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 250)
+        secondaryMessageLabel.addConstraint(widthConstraint)
+        
+        heightConstraint = NSLayoutConstraint(item: secondaryMessageLabel, attribute: .Height, relatedBy: .Equal,
+            toItem: nil, attribute: .NotAnAttribute, multiplier: 1.0, constant: 100)
+        secondaryMessageLabel.addConstraint(heightConstraint)
+        
+        xConstraint = NSLayoutConstraint(item: secondaryMessageLabel, attribute: .CenterX, relatedBy: .Equal, toItem: emptyTableView, attribute: .CenterX, multiplier: 1, constant: 0)
+        
+        yConstraint = NSLayoutConstraint(item: secondaryMessageLabel, attribute: .CenterY, relatedBy: .Equal, toItem: mainMessageLabel, attribute: .CenterY, multiplier: 1, constant: 30)
+        
+        emptyTableView.addConstraint(xConstraint)
+        emptyTableView.addConstraint(yConstraint)
+        
+        emptyTableView.addSubview(secondaryMessageLabel)
+        tableView.backgroundView = emptyTableView;
+        tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }
     
 }

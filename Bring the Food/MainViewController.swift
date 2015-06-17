@@ -32,6 +32,9 @@ class MainViewController: UIViewController, FilterProtocol {
             (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
         }
         self.tableView.addSubview(self.refreshControl)
+        let backgroundView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = backgroundView
+        tableView.backgroundColor = UIColor.clearColor()
     }
     
     override func viewWillAppear(animated:Bool) {
