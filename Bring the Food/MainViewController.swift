@@ -13,7 +13,8 @@ class MainViewController: UIViewController, FilterProtocol {
     @IBOutlet weak var tableView: UITableView!
     
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
-
+    var filterState: FilterState?
+    
     weak var donationsObserver: NSObjectProtocol?
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
@@ -31,6 +32,7 @@ class MainViewController: UIViewController, FilterProtocol {
         for item in (self.tabBarController?.tabBar.items as NSArray!){
             (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
         }
+        filterState = FilterState(isFrozenFood: true)
         self.tableView.addSubview(self.refreshControl)
         let backgroundView = UIView(frame: CGRectZero)
         tableView.tableFooterView = backgroundView
@@ -61,6 +63,7 @@ class MainViewController: UIViewController, FilterProtocol {
         if segue.identifier == "filterContent" {
             var vc = segue.destinationViewController as! FilterViewController
             vc.delegate = self
+            vc.filterState = self.filterState
         }
     }
     
@@ -81,12 +84,13 @@ class MainViewController: UIViewController, FilterProtocol {
         Model.getInstance().downloadOthersDonationsList()
     }
     
-    func handleFiltering() {
+    func handleFiltering(filterState: FilterState) {
+        self.filterState = filterState
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
 }
 
 protocol FilterProtocol {
-    func handleFiltering()
+    func handleFiltering(filterState: FilterState)
 }
