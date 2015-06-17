@@ -70,9 +70,10 @@ public class ModelUpdater : NSObject{
         
         //parsing json
         var jsonError: NSError?
-        let json = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError) as! NSDictionary
+        let parsedJson: AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options: nil, error: &jsonError)
         
-        if (jsonError == nil){
+        if (jsonError == nil && parsedJson != nil){
+            let json = parsedJson as! NSDictionary
             let success : Bool = json["success"] as! Bool
             if(success){
                 

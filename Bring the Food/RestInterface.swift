@@ -351,7 +351,7 @@ public class RestInterface : NSObject{
         // classe, come fatto con la cache di immagini.
         var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
             
-            if(error == nil){
+            if(error == nil && data != nil){
                 
                 let response_status = (response as! NSHTTPURLResponse).statusCode
                 
