@@ -58,6 +58,7 @@
 		B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */; };
 		B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B3A30B0F1B32BBE200F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
+		B3A30B101B32BFEC00F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
 		B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
 		B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */; };
@@ -395,6 +396,7 @@
 				3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */,
 				3B6F96C91B2DFE05004C9503 /* RestTest.swift in Sources */,
 				3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */,
+				B3A30B101B32BFEC00F733E0 /* FilterState.swift in Sources */,
 				3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */,
 				3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */,
 				3B3441461B300F060080360D /* NSUserDefaultsKeys.swift in Sources */,
