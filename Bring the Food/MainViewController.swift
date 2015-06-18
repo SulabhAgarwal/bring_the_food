@@ -14,6 +14,7 @@ class MainViewController: UIViewController, FilterProtocol {
     
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     var filterState: FilterState?
+    var othersDonationsList: OthersDonationsList?
     
     weak var donationsObserver: NSObjectProtocol?
     lazy var refreshControl: UIRefreshControl = {
@@ -32,7 +33,7 @@ class MainViewController: UIViewController, FilterProtocol {
         for item in (self.tabBarController?.tabBar.items as NSArray!){
             (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
         }
-        filterState = FilterState(isFrozenFood: true)
+        filterState = FilterState()
         self.tableView.addSubview(self.refreshControl)
         let backgroundView = UIView(frame: CGRectZero)
         tableView.tableFooterView = backgroundView
@@ -74,6 +75,10 @@ class MainViewController: UIViewController, FilterProtocol {
     
     func fillTableView(notification: NSNotification){
         let othersDonationsList = Model.getInstance().getOthersDonationsList()
+        if (filterState != nil){
+            othersDonationsList.setFilter(filterState!)
+        }
+        self.othersDonationsList = othersDonationsList
         tableView.dataSource = othersDonationsList
         tableView.delegate = othersDonationsList
         tableView.reloadData()
@@ -86,6 +91,12 @@ class MainViewController: UIViewController, FilterProtocol {
     
     func handleFiltering(filterState: FilterState) {
         self.filterState = filterState
+        if (othersDonationsList != nil){
+            othersDonationsList?.setFilter(filterState)
+            tableView.dataSource = othersDonationsList
+            tableView.delegate = othersDonationsList
+            tableView.reloadData()
+        }
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     

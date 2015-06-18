@@ -9,5 +9,17 @@
 import Foundation
 
 public struct FilterState{
+    var isFreshFood: Bool
+    var isCookedFood: Bool
+    var isDriedFood: Bool
     var isFrozenFood: Bool
+    var expiration: Int
+    
+    public init(){
+        isFreshFood = true
+        isCookedFood = true
+        isDriedFood = true
+        isFrozenFood = true
+        expiration = 60
+    }
 }
