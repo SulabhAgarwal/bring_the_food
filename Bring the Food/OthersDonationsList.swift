@@ -105,7 +105,7 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
     // MARK:  UITableViewDelegate Methods
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        delegate?.displayDetail()
+        delegate?.displayDetail(othersDonationsFilteredList[indexPath.row])
     }
     
     public func setFilter(filterState: FilterState){

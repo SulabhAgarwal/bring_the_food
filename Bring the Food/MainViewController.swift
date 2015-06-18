@@ -15,6 +15,7 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     var filterState: FilterState?
     var othersDonationsList: OthersDonationsList?
+    var chosenDonation: StoredDonation?
     
     weak var donationsObserver: NSObjectProtocol?
     lazy var refreshControl: UIRefreshControl = {
@@ -61,10 +62,14 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
-        if segue.identifier == "filterContent" {
+        if (segue.identifier == "filterContent") {
             var vc = segue.destinationViewController as! FilterViewController
             vc.delegate = self
             vc.filterState = self.filterState
+        }
+        else if(segue.identifier == "goToDetail"){
+            var vc = segue.destinationViewController as! DetailViewController
+            vc.donation = chosenDonation
         }
     }
     
@@ -101,7 +106,8 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func displayDetail() {
+    func displayDetail(chosenDonation: StoredDonation) {
+        self.chosenDonation = chosenDonation
         performSegueWithIdentifier("goToDetail", sender: nil)
     }
     
@@ -112,7 +118,7 @@ protocol FilterProtocol {
 }
 
 protocol DisplayDetail {
-    func displayDetail()
+    func displayDetail(chosenDonation: StoredDonation)
 }
 
 

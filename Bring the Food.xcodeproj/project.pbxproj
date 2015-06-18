@@ -55,6 +55,7 @@
 		3BFFF2DC1B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
 		B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */; };
+		B38DB33A1B337DC7006C4820 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */; };
 		B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B3A30B0F1B32BBE200F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
 		B3A30B101B32BFEC00F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
@@ -408,6 +409,7 @@
 				3B3441461B300F060080360D /* NSUserDefaultsKeys.swift in Sources */,
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
+				B38DB33A1B337DC7006C4820 /* DetailViewController.swift in Sources */,
 				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
 				3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */,
 				3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */,
