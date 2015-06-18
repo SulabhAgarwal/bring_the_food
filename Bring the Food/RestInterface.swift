@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class RestInterface : NSObject{
     
@@ -22,7 +23,9 @@ public class RestInterface : NSObject{
     // imposta anche il caching
     private override init() {
         
-        self.imageCache = NSURLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "ImageDownloadCache")
+        let memoryCapacity : Int = 20*1024*1024
+        let diskCapacity : Int = 100*1024*1024
+        self.imageCache = NSURLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "ImageDownloadCache")
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
         configuration.URLCache = self.imageCache
@@ -42,8 +45,6 @@ public class RestInterface : NSObject{
         self.imageCache.removeAllCachedResponses()
     }
     
-    //TODO
-    private func clearRequestCache(){}
     
     //*********************************************************************************
     // CREDENTIALS STORAGE
@@ -85,11 +86,14 @@ public class RestInterface : NSObject{
     }
     
     // Da chiamare in seguito al logout, cancella tutte le credenziali salvate
-    private func deleteCredentials() {
+    private func deletePersistedData() {
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject("", forKey: singleAccessTokenKey)
         defaults.setInteger(0, forKey: userIdKey)
+        defaults.setObject(nil, forKey: getMyDonationNotificationKey)
+        defaults.setObject(nil, forKey: getOthersDonationNotificationKey)
+        defaults.setObject(nil, forKey: getBookingsNotificationKey)
 
     }
     
@@ -224,7 +228,7 @@ public class RestInterface : NSObject{
             request.HTTPMethod = "GET"
             singleAccessToken = ""
             userId = 0
-            deleteCredentials()
+            deletePersistedData()
             sendRequest(request, notification_key: logoutResponseNotificationKey)
         }
         else{
@@ -323,67 +327,69 @@ public class RestInterface : NSObject{
                 // attenzione: in swift, gli switch NON hanno
                 // l'implicit fallthrough, e NON necessitano dei break
                 switch response_status {
-                case 200, 201, 204: ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
-                case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
-                default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
-                }
-            }
-            else{
-                // error != nil
-                ModelUpdater.getInstance().notifyDeviceError(notification_key)
-            }
-        })
-        
-        task.resume()
-    }
-    
-    
-    private func sendCachedRequest(request : NSMutableURLRequest, notification_key : String){
-        
-        //completo l'header
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token token=\"\(securityToken)\"", forHTTPHeaderField: "Authorization")
-        
-        //preparo il dialogo con il server
-        var session = NSURLSession.sharedSession()
-        
-        //TODO: cambiare la sessione con una sessione che mantenga la cache, e salvare tale sessione come variabile di 
-        // classe, come fatto con la cache di immagini.
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            
-            if(error == nil && data != nil){
-                
-                let response_status = (response as! NSHTTPURLResponse).statusCode
-                
-                // attenzione: in swift, gli switch NON hanno
-                // l'implicit fallthrough, e NON necessitano dei break
-                switch response_status {
                 case 200, 201, 204:
-                    // salvo il risultato in cache
+                    if self.cachedRequest(notification_key)! {
+                        self.storeResponseInCache(notification_key, data: data)
+                    }
                     ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
                 case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
-                default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
+                default :
+                    if self.cachedRequest(notification_key)! {
+                        self.lookForResponseInCache(notification_key, networkStatus: RequestStatus.NETWORK_ERROR)
+                    }
+                    ModelUpdater.getInstance().notifyNetworkError(notification_key)
                 }
             }
             else{
                 // error != nil
+                if self.cachedRequest(notification_key)! {
+                    self.lookForResponseInCache(notification_key, networkStatus: RequestStatus.DEVICE_ERROR)
+                }
                 ModelUpdater.getInstance().notifyDeviceError(notification_key)
             }
         })
         
         task.resume()
     }
+
     
-    private func lookForResponseInCache(/*prende come parametri la url e il tipo di errore*/){
-        // ricerco la url nella cache
+    private func storeResponseInCache(notificationKey:String!, data: NSData!){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(data, forKey: notificationKey)
+    }
+    
+    private func lookForResponseInCache(notificationKey: String!, networkStatus: RequestStatus!){
+
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let data : NSData? = defaults.objectForKey(notificationKey) as? NSData
         
-        // se trovo, invio notify success
+        if data != nil {
+            
+            ModelUpdater.getInstance().notifySuccess(notificationKey, data: data!)
+            
+        } else {
+            if networkStatus == RequestStatus.DEVICE_ERROR {
+                ModelUpdater.getInstance().notifyDeviceError(notificationKey)
+            }
+            else if networkStatus == RequestStatus.NETWORK_ERROR {
+                ModelUpdater.getInstance().notifyNetworkError(notificationKey)
+            }
+        }
+    }
+    
+    private func cachedRequest(notificationKey: String!) -> Bool! {
+        if notificationKey == getMyDonationNotificationKey {
+            return true
+        }
         
-        
-        // se non trovo il risultato in cache
-        // se l'errore era di device chiamo notify device error
-        // se l'errore era di network chiamo notify network error
-        
+        if notificationKey == getOthersDonationNotificationKey {
+            return true
+        }
+    
+        if notificationKey == getBookingsNotificationKey {
+            return true
+        }
+        return false
     }
     
     
