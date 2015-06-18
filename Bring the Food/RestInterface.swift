@@ -16,7 +16,6 @@ public class RestInterface : NSObject{
     private var userId: Int = 0
     private var singleAccessToken: String = ""
     private let imageCache : NSURLCache
-    private let restCache : NSURLCache
     private var imageSession : NSURLSession!
     private static var instance: RestInterface?
     
@@ -24,8 +23,9 @@ public class RestInterface : NSObject{
     // imposta anche il caching
     private override init() {
         
-        self.restCache = NSURLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "RestCache")
-        self.imageCache = NSURLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "ImageDownloadCache")
+        let memoryCapacity : Int = 20*1024*1024
+        let diskCapacity : Int = 100*1024*1024
+        self.imageCache = NSURLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "ImageDownloadCache")
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
         configuration.URLCache = self.imageCache
@@ -45,10 +45,6 @@ public class RestInterface : NSObject{
         self.imageCache.removeAllCachedResponses()
     }
     
-    
-    private func clearRequestCache(){
-        self.restCache.removeAllCachedResponses()
-    }
     
     //*********************************************************************************
     // CREDENTIALS STORAGE
@@ -90,11 +86,14 @@ public class RestInterface : NSObject{
     }
     
     // Da chiamare in seguito al logout, cancella tutte le credenziali salvate
-    private func deleteCredentials() {
+    private func deletePersistedData() {
         
         let defaults = NSUserDefaults.standardUserDefaults()
         defaults.setObject("", forKey: singleAccessTokenKey)
         defaults.setInteger(0, forKey: userIdKey)
+        defaults.setObject(nil, forKey: getMyDonationNotificationKey)
+        defaults.setObject(nil, forKey: getOthersDonationNotificationKey)
+        defaults.setObject(nil, forKey: getBookingsNotificationKey)
 
     }
     
@@ -135,7 +134,7 @@ public class RestInterface : NSObject{
             var parameters:String = "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/donations/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendCachedRequest(request, notification_key: getOthersDonationNotificationKey)
+            sendRequest(request, notification_key: getOthersDonationNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getOthersDonationNotificationKey)
@@ -147,7 +146,7 @@ public class RestInterface : NSObject{
             var parameters:String = "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/my_donations/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendCachedRequest(request, notification_key: getMyDonationNotificationKey)
+            sendRequest(request, notification_key: getMyDonationNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getMyDonationNotificationKey)
@@ -160,7 +159,7 @@ public class RestInterface : NSObject{
             "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/donations/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendCachedRequest(request, notification_key: getSingleDonationNotificationKey)
+            sendRequest(request, notification_key: getSingleDonationNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getSingleDonationNotificationKey)
@@ -190,7 +189,7 @@ public class RestInterface : NSObject{
             var parameters:String = "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/bookings/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendCachedRequest(request, notification_key: getBookingsNotificationKey)
+            sendRequest(request, notification_key: getBookingsNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getBookingsNotificationKey)
@@ -229,7 +228,7 @@ public class RestInterface : NSObject{
             request.HTTPMethod = "GET"
             singleAccessToken = ""
             userId = 0
-            deleteCredentials()
+            deletePersistedData()
             sendRequest(request, notification_key: logoutResponseNotificationKey)
         }
         else{
@@ -328,76 +327,45 @@ public class RestInterface : NSObject{
                 // attenzione: in swift, gli switch NON hanno
                 // l'implicit fallthrough, e NON necessitano dei break
                 switch response_status {
-                case 200, 201, 204: ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
+                case 200, 201, 204:
+                    if self.cachedRequest(notification_key)! {
+                        self.storeResponseInCache(notification_key, data: data)
+                    }
+                    ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
                 case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
-                default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
+                default :
+                    if self.cachedRequest(notification_key)! {
+                        self.lookForResponseInCache(notification_key, networkStatus: RequestStatus.NETWORK_ERROR)
+                    }
+                    ModelUpdater.getInstance().notifyNetworkError(notification_key)
                 }
             }
             else{
                 // error != nil
+                if self.cachedRequest(notification_key)! {
+                    self.lookForResponseInCache(notification_key, networkStatus: RequestStatus.DEVICE_ERROR)
+                }
                 ModelUpdater.getInstance().notifyDeviceError(notification_key)
             }
         })
         
         task.resume()
     }
+
     
-    
-    private func sendCachedRequest(request : NSMutableURLRequest, notification_key : String){
-        
-        //completo l'header
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("Token token=\"\(securityToken)\"", forHTTPHeaderField: "Authorization")
-        
-        //preparo il dialogo con il server
-        var session = NSURLSession.sharedSession()
-        
-        //TODO: cambiare la sessione con una sessione che mantenga la cache, e salvare tale sessione come variabile di 
-        // classe, come fatto con la cache di immagini.
-        var task = session.dataTaskWithRequest(request, completionHandler: {data, response, error -> Void in
-            
-            if(error == nil && data != nil){
-                
-                let response_status = (response as! NSHTTPURLResponse).statusCode
-                
-                // attenzione: in swift, gli switch NON hanno
-                // l'implicit fallthrough, e NON necessitano dei break
-                switch response_status {
-                case 200, 201, 204:
-                    // salvo il risultato in cache
-                    let responseToCache = NSCachedURLResponse(response: response, data: data)
-                    self.restCache.storeCachedResponse(responseToCache, forRequest: request)
-                    println(self.restCache.currentDiskUsage)
-                    println(self.restCache.currentMemoryUsage)
-                    // estraggo dati dal risultato
-                    ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
-                case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
-                default :
-                    self.lookForResponseInCache(request, notificationKey: notification_key, networkStatus: RequestStatus.NETWORK_ERROR)
-                }
-            }
-            else{
-                // error != nil
-                self.lookForResponseInCache(request, notificationKey: notification_key, networkStatus: RequestStatus.DEVICE_ERROR)
-            }
-        })
-        
-        task.resume()
+    private func storeResponseInCache(notificationKey:String!, data: NSData!){
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(data, forKey: notificationKey)
     }
     
-    private func lookForResponseInCache(request: NSURLRequest!, notificationKey: String!, networkStatus: RequestStatus!){
+    private func lookForResponseInCache(notificationKey: String!, networkStatus: RequestStatus!){
 
-        let response = self.restCache.cachedResponseForRequest(request)
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let data : NSData? = defaults.objectForKey(notificationKey) as? NSData
         
-        if response != nil {
-            let alert = UIAlertView()
-            alert.title = "Cache"
-            alert.message = "Navigazione offline!"
-            alert.addButtonWithTitle("Dismiss")
-            alert.show()
+        if data != nil {
             
-            println(response!.storagePolicy.rawValue)
-            ModelUpdater.getInstance().notifySuccess(notificationKey, data: response!.data)
+            ModelUpdater.getInstance().notifySuccess(notificationKey, data: data!)
             
         } else {
             if networkStatus == RequestStatus.DEVICE_ERROR {
@@ -407,6 +375,21 @@ public class RestInterface : NSObject{
                 ModelUpdater.getInstance().notifyNetworkError(notificationKey)
             }
         }
+    }
+    
+    private func cachedRequest(notificationKey: String!) -> Bool! {
+        if notificationKey == getMyDonationNotificationKey {
+            return true
+        }
+        
+        if notificationKey == getOthersDonationNotificationKey {
+            return true
+        }
+    
+        if notificationKey == getBookingsNotificationKey {
+            return true
+        }
+        return false
     }
     
     
