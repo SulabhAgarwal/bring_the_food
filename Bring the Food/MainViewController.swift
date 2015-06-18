@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, FilterProtocol {
+class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -75,6 +75,7 @@ class MainViewController: UIViewController, FilterProtocol {
     
     func fillTableView(notification: NSNotification){
         let othersDonationsList = Model.getInstance().getOthersDonationsList()
+        othersDonationsList.delegate = self
         if (filterState != nil){
             othersDonationsList.setFilter(filterState!)
         }
@@ -100,8 +101,18 @@ class MainViewController: UIViewController, FilterProtocol {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    func displayDetail() {
+        performSegueWithIdentifier("goToDetail", sender: nil)
+    }
+    
 }
 
 protocol FilterProtocol {
     func handleFiltering(filterState: FilterState)
 }
+
+protocol DisplayDetail {
+    func displayDetail()
+}
+
+

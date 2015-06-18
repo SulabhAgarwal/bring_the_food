@@ -15,13 +15,14 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
     private var othersDonationsFilteredList: [StoredDonation]!
     private var emptyTableView: UIView?
     private var secondaryMessageLabel: UILabel?
+    var delegate: DisplayDetail? = nil
     let textCellIdentifier = "TextCell"
     
     public init(othersDonationsList: [StoredDonation]!){
         self.othersDonationsList = othersDonationsList
         othersDonationsFilteredList = othersDonationsList
     }
-    
+
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Available donations"
     }
@@ -104,8 +105,7 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
     // MARK:  UITableViewDelegate Methods
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let row = indexPath.row
-        println(othersDonationsList[row])
+        delegate?.displayDetail()
     }
     
     public func setFilter(filterState: FilterState){

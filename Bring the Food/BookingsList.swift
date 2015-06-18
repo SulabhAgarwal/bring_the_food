@@ -137,10 +137,10 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
         
         yConstraint = NSLayoutConstraint(item: secondaryMessageLabel, attribute: .CenterY, relatedBy: .Equal, toItem: mainMessageLabel, attribute: .CenterY, multiplier: 1, constant: 30)
         
+        emptyTableView.addSubview(secondaryMessageLabel)
         emptyTableView.addConstraint(xConstraint)
         emptyTableView.addConstraint(yConstraint)
         
-        emptyTableView.addSubview(secondaryMessageLabel)
         tableView.backgroundView = emptyTableView;
         tableView.separatorStyle = UITableViewCellSeparatorStyle.None
     }

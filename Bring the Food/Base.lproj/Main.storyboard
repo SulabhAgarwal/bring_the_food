@@ -1033,10 +1033,10 @@
             </objects>
             <point key="canvasLocation" x="2406" y="-472"/>
         </scene>
-        <!--Filter View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="1WO-DT-Ed3">
             <objects>
-                <viewController id="5qA-EO-kRj" customClass="FilterViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5qA-EO-kRj" customClass="DetailViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="57G-qo-Htd"/>
                         <viewControllerLayoutGuide type="bottom" id="IBc-tn-xBm"/>
@@ -1048,8 +1048,8 @@
                             <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjm-gy-kl6">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donations List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kN-0I-uO0">
-                                        <rect key="frame" x="239" y="29" width="122" height="22.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Detail" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1kN-0I-uO0">
+                                        <rect key="frame" x="276" y="29" width="48.5" height="22.5"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -1069,12 +1069,12 @@
                                         </state>
                                         <variation key="default">
                                             <mask key="constraints">
-                                                <exclude reference="xzG-8m-tmV"/>
                                                 <exclude reference="iiQ-MY-Wdq"/>
+                                                <exclude reference="xzG-8m-tmV"/>
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <action selector="backButtonPressed:" destination="5qA-EO-kRj" eventType="touchUpInside" id="DcE-aQ-dTj"/>
+                                            <action selector="backButtonPressed:" destination="5qA-EO-kRj" eventType="touchUpInside" id="Hcn-er-9F5"/>
                                         </connections>
                                     </button>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="btf_logo_small" translatesAutoresizingMaskIntoConstraints="NO" id="n0h-FG-03d">

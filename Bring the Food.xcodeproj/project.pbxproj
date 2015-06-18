@@ -17,7 +17,6 @@
 		3B2727F21B2CA9BA0064F53A /* BookingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */; };
 		3B2727F31B2CA9BA0064F53A /* MyDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */; };
 		3B2727F41B2CA9BA0064F53A /* OthersDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */; };
-		3B2727F61B2CAAA70064F53A /* OthersDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */; };
 		3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F01B2CA9BA0064F53A /* MyDonationsList.swift */; };
 		3B2727F81B2CAAB40064F53A /* BookingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727EF1B2CA9BA0064F53A /* BookingsList.swift */; };
 		3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2E97F01B28B59400506B54 /* NewDonation.swift */; };
@@ -59,6 +58,10 @@
 		B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B3A30B0F1B32BBE200F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
 		B3A30B101B32BFEC00F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
+		B3BEE6071B33412C001F7E7F /* OthersDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */; };
+		B3BEE6081B3342BF001F7E7F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
+		B3BEE6091B33431D001F7E7F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
+		B3BEE60B1B3348C2001F7E7F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */; };
 		B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
 		B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */; };
@@ -109,6 +112,7 @@
 		B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
 		B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		B3A30B0E1B32BBE200F733E0 /* FilterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterState.swift; sourceTree = "<group>"; };
+		B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B3BF98B11B2F97C000E79515 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B3DED4801B2CA00F00F9808D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStep1ViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +246,7 @@
 				B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */,
 				B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */,
 				B3BF98B11B2F97C000E79515 /* FilterViewController.swift */,
+				B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 				3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */,
 				3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */,
 				B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */,
+				B3BEE60B1B3348C2001F7E7F /* DetailViewController.swift in Sources */,
 				3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */,
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
 				3B3441451B300B420080360D /* NSUserDefaultsKeys.swift in Sources */,
@@ -403,15 +409,17 @@
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
 				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
-				3B2727F61B2CAAA70064F53A /* OthersDonationsList.swift in Sources */,
 				3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */,
 				3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */,
+				B3BEE6071B33412C001F7E7F /* OthersDonationsList.swift in Sources */,
 				3B132AA11B28CE8700D8A09F /* Date.swift in Sources */,
+				B3BEE6081B3342BF001F7E7F /* MainViewController.swift in Sources */,
 				3BD2847A1B2C0C9C00D77319 /* ApplicationSettings.swift in Sources */,
 				3BD284771B2C0C8D00D77319 /* StoredDonation.swift in Sources */,
 				3B6F96C21B2DF52F004C9503 /* ProductType.swift in Sources */,
 				3B49131D1B2EAE7200173BAE /* ImageType.swift in Sources */,
 				3B132AA01B28CE8300D8A09F /* NewDonation.swift in Sources */,
+				B3BEE6091B33431D001F7E7F /* FilterViewController.swift in Sources */,
 				3B12DA5A1B27498700105A48 /* HTTPResponseData.swift in Sources */,
 				3BD284781B2C0C9300D77319 /* User.swift in Sources */,
 				3BD284761B2C0BE700D77319 /* Model.swift in Sources */,
