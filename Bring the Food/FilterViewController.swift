@@ -49,7 +49,3 @@ class FilterViewController: UIViewController {
     }
     
 }
-
-struct FilterState{
-    var isFrozenFood: Bool
-}
