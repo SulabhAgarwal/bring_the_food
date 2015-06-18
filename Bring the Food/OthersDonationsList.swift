@@ -86,6 +86,10 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
         println(othersDonationsList[row])
     }
     
+    func setFilter(){
+        
+    }
+    
     func createEmptyView(tableView: UITableView){
         // Display a message when the table is empty
         let emptyTableView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))

@@ -915,12 +915,19 @@
                                 </variation>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GsQ-za-oMO">
-                                <rect key="frame" x="277" y="285" width="46" height="30"/>
+                                <rect key="frame" x="230" y="410" width="46" height="30"/>
                                 <state key="normal" title="Button">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="buttonPressed:" destination="L4a-ke-I24" eventType="touchUpInside" id="pyd-dO-fN0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nsJ-vN-n4i">
+                                <rect key="frame" x="92" y="146" width="50" height="50"/>
+                                <state key="normal" image="frozen_grey"/>
+                                <connections>
+                                    <action selector="frozenFoodButtonPressed:" destination="L4a-ke-I24" eventType="touchUpInside" id="8Te-77-hdN"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -931,6 +938,9 @@
                             <constraint firstAttribute="trailing" secondItem="ZYC-Hr-owx" secondAttribute="trailing" id="siC-ek-utp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="frozenFoodButton" destination="nsJ-vN-n4i" id="cLj-Gq-Ttr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2T3-GI-ErC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1337,6 +1347,7 @@
         <image name="email" width="26" height="17"/>
         <image name="explore" width="25" height="25"/>
         <image name="explore_filled" width="25" height="25"/>
+        <image name="frozen_grey" width="50" height="50"/>
         <image name="landmark" width="15" height="26"/>
         <image name="liters" width="18" height="23"/>
         <image name="lockShape" width="20" height="25"/>
