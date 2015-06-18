@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class RestInterface : NSObject{
     
@@ -134,7 +135,7 @@ public class RestInterface : NSObject{
             var parameters:String = "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/donations/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendRequest(request, notification_key: getOthersDonationNotificationKey)
+            sendCachedRequest(request, notification_key: getOthersDonationNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getOthersDonationNotificationKey)
@@ -146,7 +147,7 @@ public class RestInterface : NSObject{
             var parameters:String = "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/my_donations/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendRequest(request, notification_key: getMyDonationNotificationKey)
+            sendCachedRequest(request, notification_key: getMyDonationNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getMyDonationNotificationKey)
@@ -159,7 +160,7 @@ public class RestInterface : NSObject{
             "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/donations/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendRequest(request, notification_key: getSingleDonationNotificationKey)
+            sendCachedRequest(request, notification_key: getSingleDonationNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getSingleDonationNotificationKey)
@@ -189,7 +190,7 @@ public class RestInterface : NSObject{
             var parameters:String = "?user_credentials=\(singleAccessToken)"
             var request = NSMutableURLRequest(URL: NSURL(string: serverAddress + "/bookings/" + parameters)!)
             request.HTTPMethod = "GET"
-            sendRequest(request, notification_key: getBookingsNotificationKey)
+            sendCachedRequest(request, notification_key: getBookingsNotificationKey)
         }
         else{
             ModelUpdater.getInstance().notifyNotLoggedInError(getBookingsNotificationKey)
@@ -366,31 +367,46 @@ public class RestInterface : NSObject{
                     // salvo il risultato in cache
                     let responseToCache = NSCachedURLResponse(response: response, data: data)
                     self.restCache.storeCachedResponse(responseToCache, forRequest: request)
+                    println(self.restCache.currentDiskUsage)
+                    println(self.restCache.currentMemoryUsage)
                     // estraggo dati dal risultato
                     ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
                 case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
-                default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
+                default :
+                    self.lookForResponseInCache(request, notificationKey: notification_key, networkStatus: RequestStatus.NETWORK_ERROR)
                 }
             }
             else{
                 // error != nil
-                ModelUpdater.getInstance().notifyDeviceError(notification_key)
+                self.lookForResponseInCache(request, notificationKey: notification_key, networkStatus: RequestStatus.DEVICE_ERROR)
             }
         })
         
         task.resume()
     }
     
-    private func lookForResponseInCache(/*prende come parametri la url e il tipo di errore*/){
-        // ricerco la url nella cache
+    private func lookForResponseInCache(request: NSURLRequest!, notificationKey: String!, networkStatus: RequestStatus!){
+
+        let response = self.restCache.cachedResponseForRequest(request)
         
-        // se trovo, invio notify success
-        
-        
-        // se non trovo il risultato in cache
-        // se l'errore era di device chiamo notify device error
-        // se l'errore era di network chiamo notify network error
-        
+        if response != nil {
+            let alert = UIAlertView()
+            alert.title = "Cache"
+            alert.message = "Navigazione offline!"
+            alert.addButtonWithTitle("Dismiss")
+            alert.show()
+            
+            println(response!.storagePolicy.rawValue)
+            ModelUpdater.getInstance().notifySuccess(notificationKey, data: response!.data)
+            
+        } else {
+            if networkStatus == RequestStatus.DEVICE_ERROR {
+                ModelUpdater.getInstance().notifyDeviceError(notificationKey)
+            }
+            else if networkStatus == RequestStatus.NETWORK_ERROR {
+                ModelUpdater.getInstance().notifyNetworkError(notificationKey)
+            }
+        }
     }
     
     
