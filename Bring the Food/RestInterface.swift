@@ -15,6 +15,7 @@ public class RestInterface : NSObject{
     private var userId: Int = 0
     private var singleAccessToken: String = ""
     private let imageCache : NSURLCache
+    private let restCache : NSURLCache
     private var imageSession : NSURLSession!
     private static var instance: RestInterface?
     
@@ -22,6 +23,7 @@ public class RestInterface : NSObject{
     // imposta anche il caching
     private override init() {
         
+        self.restCache = NSURLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "RestCache")
         self.imageCache = NSURLCache(memoryCapacity: 20 * 1024 * 1024, diskCapacity: 100 * 1024 * 1024, diskPath: "ImageDownloadCache")
         var configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
@@ -42,8 +44,10 @@ public class RestInterface : NSObject{
         self.imageCache.removeAllCachedResponses()
     }
     
-    //TODO
-    private func clearRequestCache(){}
+    
+    private func clearRequestCache(){
+        self.restCache.removeAllCachedResponses()
+    }
     
     //*********************************************************************************
     // CREDENTIALS STORAGE
@@ -360,6 +364,9 @@ public class RestInterface : NSObject{
                 switch response_status {
                 case 200, 201, 204:
                     // salvo il risultato in cache
+                    let responseToCache = NSCachedURLResponse(response: response, data: data)
+                    self.restCache.storeCachedResponse(responseToCache, forRequest: request)
+                    // estraggo dati dal risultato
                     ModelUpdater.getInstance().notifySuccess(notification_key, data: data)
                 case 400, 401, 403, 404, 409, 422: ModelUpdater.getInstance().notifyDataError(notification_key)
                 default : ModelUpdater.getInstance().notifyNetworkError(notification_key)
