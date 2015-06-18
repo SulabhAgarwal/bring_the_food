@@ -22,6 +22,10 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
         othersDonationsFilteredList = othersDonationsList
     }
     
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Available donations"
+    }
+    
     // MARK:  UITextFieldDelegate Methods
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if(othersDonationsFilteredList.count > 0){

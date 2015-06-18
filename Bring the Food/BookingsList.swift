@@ -19,6 +19,11 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
     }
     
     // MARK:  UITextFieldDelegate Methods
+    
+    public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Booked donations"
+    }
+    
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         if(bookingsList.count > 0){
             return 1

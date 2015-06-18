@@ -15,9 +15,9 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
     let textCellIdentifier = "TextCell"
     
     public init(myAvailableDonationsList: [StoredDonation]!, myBookedDonationsList: [StoredDonation]!, myHistoricDonationsList: [StoredDonation]!){
-        donations.append(DonationsList(donationName: "Available", donationList: myAvailableDonationsList))
-        donations.append(DonationsList(donationName: "Booked", donationList: myBookedDonationsList))
-        donations.append(DonationsList(donationName: "Historic", donationList: myHistoricDonationsList))
+        donations.append(DonationsList(donationName: "Available donations", donationList: myAvailableDonationsList))
+        donations.append(DonationsList(donationName: "Booked donations", donationList: myBookedDonationsList))
+        donations.append(DonationsList(donationName: "Historic donations", donationList: myHistoricDonationsList))
     }
     
     // MARK:  UITextFieldDelegate Methods
