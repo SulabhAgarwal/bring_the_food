@@ -17,9 +17,9 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
     private var emptyTableView: UIView?
     private var mainMessageLabel: UILabel?
     private var secondaryMessageLabel: UILabel?
-    var delegate: DisplayDetail? = nil
     private let textCellIdentifier = "TextCell"
     private var requestStatus: RequestStatus?
+    var delegate: DisplayDetail? = nil
     
     
     
@@ -166,7 +166,6 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
     
     // Display a message in case of empty table view
     private func createEmptyView(tableView: UITableView){
-        // Display a message when the table is empty
         emptyTableView = UIView(frame: CGRectMake(0, 0, tableView.bounds.width, tableView.bounds.height))
         mainMessageLabel = UILabel()
         mainMessageLabel!.textColor = UIColor.lightGrayColor()
