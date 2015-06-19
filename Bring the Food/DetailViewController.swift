@@ -12,20 +12,54 @@ import AddressBook
 
 class DetailViewController: UIViewController, MKMapViewDelegate {
     
+    // Outlets
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var infoPanelView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
     
+    // Variables populated from prepareForSegue
     var donation: StoredDonation?
-    let regionRadius: CLLocationDistance = 250
-    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
-    var donationPosition: BtfAnnotation?
-    weak var userImageObserver: NSObjectProtocol!
-    var imageDownloader: ImageDownloader?
+    
+    // Private variables
+    private let regionRadius: CLLocationDistance = 250
+    private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+    private var donationPosition: BtfAnnotation?
+    
+    // Observers
+    private weak var userImageObserver: NSObjectProtocol!
+    
+    // Image downloader
+    private var imageDownloader: ImageDownloader?
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpInterface()
+    }
+    
+    override func viewWillAppear(animated:Bool) {
+        super.viewWillAppear(animated)
+        imageDownloader = ImageDownloader(url: donation?.getSupplier().getImageURL())
+        // Register notification center observer
+        userImageObserver = NSNotificationCenter.defaultCenter().addObserverForName(imageDownloadNotificationKey,
+            object: imageDownloader,
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: {(notification:NSNotification!) in self.userImageHandler(notification)})
+        imageDownloader?.downloadImage()
+    }
+    
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+        return UIStatusBarStyle.LightContent
+    }
+    
+    @IBAction func backButtonPressed(sender: UIButton) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+    
+    // User interface settings
+    func setUpInterface() {
         mainLabel.numberOfLines = 2
         mainLabel.text = donation?.getDescription()
         infoPanelView.layer.borderColor = UIMainColor.CGColor
@@ -37,34 +71,17 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             offerer: donation!.getSupplier().getName(), address: donation!.getSupplier().getAddress().getLabel()!, coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLatitude()!), longitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLongitude()!)))
         mapView.addAnnotation(donationPosition)
         mapView.delegate = self
-    }
-    
-    override func viewWillAppear(animated:Bool) {
-        super.viewWillAppear(animated)
-        imageDownloader = ImageDownloader(url: donation?.getSupplier().getImageURL())
-        // Register as notification center observer
-        userImageObserver = NSNotificationCenter.defaultCenter().addObserverForName(imageDownloadNotificationKey,
-            object: imageDownloader,
-            queue: NSOperationQueue.mainQueue(),
-            usingBlock: {(notification:NSNotification!) in self.userImageHandler(notification)})
-        imageDownloader?.downloadImage()
+
     }
 
-    
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return UIStatusBarStyle.LightContent
-    }
-    
-    @IBAction func backButtonPressed(sender: UIButton) {
-        self.navigationController?.popViewControllerAnimated(true)
-    }
-    
+    // Center the mapView on the specified location
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
             regionRadius * 2.0, regionRadius * 2.0)
         mapView.setRegion(coordinateRegion, animated: false)
     }
     
+    // Annotation specification and placement
     func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
         if let annotation = annotation as? BtfAnnotation {
             let identifier = "pin"
@@ -87,6 +104,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         return nil
     }
     
+    // Handle Apple maps opening
     func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
         calloutAccessoryControlTapped control: UIControl!) {
             let location = view.annotation as! BtfAnnotation
@@ -94,6 +112,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             location.mapItem().openInMapsWithLaunchOptions(launchOptions)
     }
     
+    // Handles donor image display
     func userImageHandler(notification: NSNotification){
         let image = imageDownloader!.getImage()
         avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2;
@@ -126,7 +145,6 @@ class BtfAnnotation: NSObject, MKAnnotation {
     func mapItem() -> MKMapItem {
         let addressDictionary = [String(kABPersonAddressStreetKey): address]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
-        
         let mapItem = MKMapItem(placemark: placemark)
         mapItem.name = title
         

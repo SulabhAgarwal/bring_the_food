@@ -14,13 +14,13 @@ class BookingsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // Interface colors
-    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+    private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     
     // Observers
-    weak var donationsObserver:NSObjectProtocol?
+    private weak var donationsObserver:NSObjectProtocol?
     
     // Refresh control
-    lazy var refreshControl: UIRefreshControl = {
+    private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         let refreshControlColor = UIColor(red: 0xfe/255, green: 0xfa/255, blue: 0xf3/255, alpha: 1)
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -56,7 +56,7 @@ class BookingsViewController: UIViewController {
     }
     
     // User interface settings
-    func setUpInterface(){
+    private func setUpInterface(){
         self.tableView.addSubview(self.refreshControl)
         let backgroundView = UIView(frame: CGRectZero)
         tableView.tableFooterView = backgroundView
@@ -64,7 +64,7 @@ class BookingsViewController: UIViewController {
     }
     
     // Handler for tableView fill
-    func fillTableView(notification: NSNotification){
+    private func fillTableView(notification: NSNotification){
         let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         let bookingsList = Model.getInstance().getMyBookings()
         bookingsList.setRequestStatus(response!.status)

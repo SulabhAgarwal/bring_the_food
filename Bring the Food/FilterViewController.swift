@@ -11,14 +11,20 @@ import UIKit
 
 class FilterViewController: UIViewController {
     
-    var delegate: FilterProtocol? = nil
-    var filterState: FilterState?
+    // Outlets
     @IBOutlet weak var freshFoodButton: UIButton!
     @IBOutlet weak var cookedFoodButton: UIButton!
     @IBOutlet weak var driedFoodButton: UIButton!
     @IBOutlet weak var frozenFoodButton: UIButton!
     @IBOutlet weak var expirationSlider: UISlider!
     @IBOutlet weak var maxExpirationLabel: UILabel!
+    
+    // Delegate
+    var delegate: FilterProtocol? = nil
+    
+    // Variables populated from prepareForSegue
+    var filterState: FilterState?
+    
     
     
     override func viewDidLoad() {
@@ -27,10 +33,8 @@ class FilterViewController: UIViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        // Set light content status bar
         return UIStatusBarStyle.LightContent
     }
-    
     
     @IBAction func freshFoodButtonPressed(sender: UIButton) {
         if(filterState!.isFreshFood){
@@ -94,7 +98,8 @@ class FilterViewController: UIViewController {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    func setUpInterface(){
+    // User interface settings
+    private func setUpInterface(){
         freshFoodButton.setImage(UIImage(named: "fresh"), forState: UIControlState.Selected)
         freshFoodButton.highlighted = false
         cookedFoodButton.setImage(UIImage(named: "cooked"), forState: UIControlState.Selected)
