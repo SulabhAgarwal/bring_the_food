@@ -46,6 +46,10 @@ public class ImageDownloader{
                 object: self)
 
     }
+    
+    private func getImage() -> UIImage?{
+        return self.image
+    }
 
 }
 
