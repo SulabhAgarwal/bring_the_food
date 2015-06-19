@@ -245,8 +245,7 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         // Use smallest side length as crop square length
         var squareLength = min(image.size.width, image.size.height)
         var clippedRect = CGRectMake((image.size.width - squareLength) / 2, (image.size.height - squareLength) / 2, squareLength, squareLength)
-        CGImageCreateWithImageInRect(image.CGImage, clippedRect)
-        changeAvatarButton.setImage(image, forState: .Normal)
+        changeAvatarButton.setImage(UIImage(CGImage: CGImageCreateWithImageInRect(image.CGImage, clippedRect)), forState: .Normal)
     }
     
     // Action sheet display in iOS7

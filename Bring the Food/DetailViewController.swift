@@ -41,7 +41,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
-        imageDownloader = ImageDownloader(url: donation?.getSupplier().getImageURL())
+        imageDownloader = ImageDownloader(url: donation!.getSupplier().getImageURL())
         // Register notification center observer
         userImageObserver = NSNotificationCenter.defaultCenter().addObserverForName(imageDownloadNotificationKey,
             object: imageDownloader,
@@ -114,16 +114,19 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     
     // Handles donor image display
     func userImageHandler(notification: NSNotification){
-        let image = imageDownloader!.getImage()
-        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2;
-        avatarImageView.clipsToBounds = true
-        avatarImageView.layer.borderWidth = 3.0;
-        avatarImageView.layer.borderColor = UIMainColor.CGColor
-        // Use smallest side length as crop square length
-        var squareLength = min(image!.size.width, image!.size.height)
-        var clippedRect = CGRectMake((image!.size.width - squareLength) / 2, (image!.size.height - squareLength) / 2, squareLength, squareLength)
-        CGImageCreateWithImageInRect(image!.CGImage, clippedRect)
-        avatarImageView.image = image
+        let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
+        if(response?.status == RequestStatus.SUCCESS){
+            let image = imageDownloader!.getImage()
+            avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2;
+            avatarImageView.clipsToBounds = true
+            avatarImageView.layer.borderWidth = 3.0;
+            avatarImageView.layer.borderColor = UIMainColor.CGColor
+            // Use smallest side length as crop square length
+            var squareLength = min(image!.size.width, image!.size.height)
+            var clippedRect = CGRectMake((image!.size.width - squareLength) / 2, (image!.size.height -      squareLength) / 2, squareLength, squareLength)
+            avatarImageView.contentMode = UIViewContentMode.ScaleAspectFill
+            avatarImageView.image = UIImage(CGImage: CGImageCreateWithImageInRect(image!.CGImage, clippedRect))
+        }
     }
 }
 
