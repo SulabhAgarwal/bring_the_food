@@ -164,7 +164,6 @@
 				3B1B4FA31B1EEE6400B9D705 /* Images.xcassets */,
 				B3541BC11B2F67F900AA7F65 /* Delegate */,
 				3B6F96C61B2DFBEE004C9503 /* ViewControllers */,
-				3B6F96C51B2DFB49004C9503 /* Persistence */,
 				3B6F96C41B2DFB2A004C9503 /* Utils */,
 				3B6F96C31B2DFB1E004C9503 /* Model */,
 				3B1B4F981B1EEE6400B9D705 /* Supporting Files */,
@@ -200,6 +199,12 @@
 		3B6F96C31B2DFB1E004C9503 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3B2E97F01B28B59400506B54 /* NewDonation.swift */,
+				3B4AE1631B2B5B2100436903 /* StoredDonation.swift */,
+				3B4AE15D1B2B5AE100436903 /* Booking.swift */,
+				3B4AE1611B2B5AF800436903 /* User.swift */,
+				3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */,
+				3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */,
 				3B4AE1651B2B65D200436903 /* Model.swift */,
 			);
 			name = Model;
@@ -218,19 +223,6 @@
 				B3A30B0E1B32BBE200F733E0 /* FilterState.swift */,
 			);
 			name = Utils;
-			sourceTree = "<group>";
-		};
-		3B6F96C51B2DFB49004C9503 /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				3B2E97F01B28B59400506B54 /* NewDonation.swift */,
-				3B4AE1631B2B5B2100436903 /* StoredDonation.swift */,
-				3B4AE15D1B2B5AE100436903 /* Booking.swift */,
-				3B4AE1611B2B5AF800436903 /* User.swift */,
-				3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */,
-				3B4AE15B1B2B5ADB00436903 /* ApplicationSettings.swift */,
-			);
-			name = Persistence;
 			sourceTree = "<group>";
 		};
 		3B6F96C61B2DFBEE004C9503 /* ViewControllers */ = {
