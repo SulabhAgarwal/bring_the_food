@@ -125,7 +125,7 @@ public class OthersDonationsList: NSObject, UITableViewDataSource, UITableViewDe
             return "Available donations"
         }
         else{
-            return "Cached donations (offline mode)"
+            return "Available donations (offline mode)"
         }
     }
     

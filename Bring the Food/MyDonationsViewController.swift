@@ -65,7 +65,9 @@ class MyDonationsViewController: UIViewController {
     
     // Handler for tableView fill
     func fillTableView(notification: NSNotification){
+        let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         let myDonationsList = Model.getInstance().getMyDonationsList()
+        myDonationsList.setRequestStatus(response!.status)
         tableView.dataSource = myDonationsList
         tableView.delegate = myDonationsList
         tableView.reloadData()

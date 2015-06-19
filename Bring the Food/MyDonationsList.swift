@@ -30,11 +30,26 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
     
     // Set number of section in table
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if(donations[0].donationsList.isEmpty && donations[1].donationsList.isEmpty && donations[2].donationsList.isEmpty){
-            createEmptyView(tableView)
-            return 0
+        if(!donations[0].donationsList.isEmpty || !donations[1].donationsList.isEmpty || !donations[2].donationsList.isEmpty){
+            if(emptyTableView != nil){
+                emptyTableView?.hidden = true
+            }
+            return donations.count
         }
-        return donations.count
+        if(emptyTableView == nil){
+            createEmptyView(tableView)
+        }
+        if(requestStatus == RequestStatus.SUCCESS){
+            mainMessageLabel?.text = "No donations"
+            secondaryMessageLabel?.text = "Pull down to refresh"
+        }
+        else{
+            mainMessageLabel?.text = "Network error"
+            secondaryMessageLabel?.text = "Check your connectivity"
+        }
+        emptyTableView?.hidden = false
+        
+        return 0
     }
     
     // Set number of rows in each section
@@ -102,6 +117,9 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
     
     // Set section titles
     public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if(requestStatus != RequestStatus.SUCCESS){
+            return donations[section].donationName + " (offline mode)"
+        }
         return donations[section].donationName
     }
     
