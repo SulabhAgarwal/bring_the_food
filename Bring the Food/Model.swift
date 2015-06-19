@@ -13,15 +13,24 @@ public class Model : NSObject{
     
     private static var instance: Model?
     private var currentUser: User?
-    private var othersDonations: OthersDonationsList?
-    private var myDonations: MyDonationsList?
-    private var myBookings: BookingsList?
+    private var othersDonations: OthersDonationsList!
+    private var myDonations: MyDonationsList!
+    private var myBookings: BookingsList!
     private var settings: ApplicationSettings?
     private var myNotifications: [BtfNotification]?
     
     
     // per fare in modo che il costruttore non sia accessibile all'esterno della classe
     private override init() {
+        let othersDon = [StoredDonation]()
+        self.othersDonations = OthersDonationsList(othersDonationsList: othersDon)
+        let myAvDon = [StoredDonation]()
+        let myBookedDon = [StoredDonation]()
+        let myHistDon = [StoredDonation]()
+        self.myDonations = MyDonationsList(myAvailableDonationsList: myAvDon, myBookedDonationsList: myBookedDon, myHistoricDonationsList: myHistDon)
+        let myBooks = [Booking]()
+        self.myBookings = BookingsList(bookingsList: myBooks)
+        
         super.init()
     }
     

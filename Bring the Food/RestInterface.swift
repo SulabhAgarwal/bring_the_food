@@ -74,6 +74,7 @@ public class RestInterface : NSObject{
     // Ritorna vero se il caricamento delle credenziali ha avuto successo, falso altrimenti
     private func loadCredentials() -> Bool {
 
+        deleteurlcache()
         let defaults = NSUserDefaults.standardUserDefaults()
         let singleAccessToken = defaults.stringForKey(singleAccessTokenKey)
         let userId = defaults.integerForKey(userIdKey)
@@ -97,6 +98,14 @@ public class RestInterface : NSObject{
 
     }
     
+    private func deleteurlcache() {
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject(nil, forKey: getMyDonationNotificationKey)
+        defaults.setObject(nil, forKey: getOthersDonationNotificationKey)
+        defaults.setObject(nil, forKey: getBookingsNotificationKey)
+        
+    }
     
     //*********************************************************************************
     // DONATIONS
