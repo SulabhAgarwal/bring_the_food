@@ -52,6 +52,10 @@
 		3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */; };
 		3BFFF2DC1B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
+		B369EF621B34A7FF00E28079 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF611B34A7FF00E28079 /* FilterProtocol.swift */; };
+		B369EF641B34A81E00E28079 /* DisplayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF631B34A81E00E28079 /* DisplayDetail.swift */; };
+		B369EF651B34A85000E28079 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF611B34A7FF00E28079 /* FilterProtocol.swift */; };
+		B369EF661B34A85000E28079 /* DisplayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF631B34A81E00E28079 /* DisplayDetail.swift */; };
 		B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */; };
 		B38DB33A1B337DC7006C4820 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */; };
 		B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
@@ -108,6 +112,8 @@
 		3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestInterface.swift; sourceTree = "<group>"; };
 		B333D38A1B2042A000DBF44D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
+		B369EF611B34A7FF00E28079 /* FilterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterProtocol.swift; sourceTree = "<group>"; };
+		B369EF631B34A81E00E28079 /* DisplayDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayDetail.swift; sourceTree = "<group>"; };
 		B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		B3A30B0E1B32BBE200F733E0 /* FilterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterState.swift; sourceTree = "<group>"; };
 		B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +170,7 @@
 				3B1B4FA31B1EEE6400B9D705 /* Images.xcassets */,
 				B3541BC11B2F67F900AA7F65 /* Delegate */,
 				3B6F96C61B2DFBEE004C9503 /* ViewControllers */,
+				B369EF601B34A7E400E28079 /* Protocols */,
 				3B6F96C41B2DFB2A004C9503 /* Utils */,
 				3B6F96C31B2DFB1E004C9503 /* Model */,
 				3B1B4F981B1EEE6400B9D705 /* Supporting Files */,
@@ -248,6 +255,15 @@
 				3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */,
 			);
 			name = Delegate;
+			sourceTree = "<group>";
+		};
+		B369EF601B34A7E400E28079 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B369EF611B34A7FF00E28079 /* FilterProtocol.swift */,
+				B369EF631B34A81E00E28079 /* DisplayDetail.swift */,
+			);
+			name = Protocols;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -367,11 +383,13 @@
 				3B2727F31B2CA9BA0064F53A /* MyDonationsList.swift in Sources */,
 				3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */,
 				3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */,
+				B369EF621B34A7FF00E28079 /* FilterProtocol.swift in Sources */,
 				B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */,
 				B3BEE60B1B3348C2001F7E7F /* DetailViewController.swift in Sources */,
 				3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */,
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
 				3B3441451B300B420080360D /* NSUserDefaultsKeys.swift in Sources */,
+				B369EF641B34A81E00E28079 /* DisplayDetail.swift in Sources */,
 				3B4AE15A1B2B5ACF00436903 /* Address.swift in Sources */,
 				3B4AE1601B2B5AE700436903 /* BtfNotification.swift in Sources */,
 				B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */,
@@ -390,12 +408,14 @@
 				3B6F96C71B2DFCD8004C9503 /* AppDelegate.swift in Sources */,
 				3B6F96C91B2DFE05004C9503 /* RestTest.swift in Sources */,
 				3B12DA591B27498200105A48 /* NSNotificationCenterKeys.swift in Sources */,
+				B369EF661B34A85000E28079 /* DisplayDetail.swift in Sources */,
 				B3A30B101B32BFEC00F733E0 /* FilterState.swift in Sources */,
 				3B2727F71B2CAAA90064F53A /* MyDonationsList.swift in Sources */,
 				3BC327171B2DB8CF002F0DCE /* RestInterface.swift in Sources */,
 				3B3441461B300F060080360D /* NSUserDefaultsKeys.swift in Sources */,
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
+				B369EF651B34A85000E28079 /* FilterProtocol.swift in Sources */,
 				B38DB33A1B337DC7006C4820 /* DetailViewController.swift in Sources */,
 				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
 				3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */,

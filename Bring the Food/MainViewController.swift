@@ -10,15 +10,22 @@ import UIKit
 
 class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
     
+    // Outlets
     @IBOutlet weak var tableView: UITableView!
     
-    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
-    var filterState: FilterState?
-    var othersDonationsList: OthersDonationsList?
-    var chosenDonation: StoredDonation?
+    // Interface colors
+    private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     
-    weak var donationsObserver: NSObjectProtocol?
-    lazy var refreshControl: UIRefreshControl = {
+    // Private variables
+    private var filterState: FilterState = FilterState()
+    private var othersDonationsList: OthersDonationsList?
+    private var chosenDonation: StoredDonation?
+    
+    // Observers
+    private weak var donationsObserver: NSObjectProtocol?
+    
+    // Refresh control
+    private lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         let refreshControlColor = UIColor(red: 0xfe/255, green: 0xfa/255, blue: 0xf3/255, alpha: 1)
         refreshControl.addTarget(self, action: "handleRefresh:", forControlEvents: UIControlEvents.ValueChanged)
@@ -27,18 +34,10 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
         }()
 
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIMainColor], forState:.Selected)
-        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIMainColor], forState:.Normal)
-        for item in (self.tabBarController?.tabBar.items as NSArray!){
-            (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
-        }
-        filterState = FilterState()
-        self.tableView.addSubview(self.refreshControl)
-        let backgroundView = UIView(frame: CGRectZero)
-        tableView.tableFooterView = backgroundView
-        tableView.backgroundColor = UIColor.clearColor()
+        setUpInterface()
     }
     
     override func viewWillAppear(animated:Bool) {
@@ -57,7 +56,6 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
     }
 
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        // Set light content status bar
         return UIStatusBarStyle.LightContent
     }
     
@@ -73,17 +71,26 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // User interface settings
+    private func setUpInterface(){
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIMainColor], forState:.Selected)
+        UITabBarItem.appearance().setTitleTextAttributes([NSForegroundColorAttributeName: UIMainColor], forState:.Normal)
+        for item in (self.tabBarController?.tabBar.items as NSArray!){
+            (item as! UITabBarItem).image = (item as! UITabBarItem).image?.imageWithRenderingMode(.AlwaysOriginal)
+        }
+        self.tableView.addSubview(self.refreshControl)
+        let backgroundView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = backgroundView
+        tableView.backgroundColor = UIColor.clearColor()
     }
     
-    func fillTableView(notification: NSNotification){
+    // Handler for tableView fill
+    private func fillTableView(notification: NSNotification){
+        let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         let othersDonationsList = Model.getInstance().getOthersDonationsList()
+        othersDonationsList.setRequestStatus(response!.status)
         othersDonationsList.delegate = self
-        if (filterState != nil){
-            othersDonationsList.setFilter(filterState!)
-        }
+        othersDonationsList.setFilter(filterState)
         self.othersDonationsList = othersDonationsList
         tableView.dataSource = othersDonationsList
         tableView.delegate = othersDonationsList
@@ -91,10 +98,12 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
         refreshControl.endRefreshing()
     }
     
+    // Refresh table content
     func handleRefresh(refreshControl: UIRefreshControl) {
         Model.getInstance().downloadOthersDonationsList()
     }
     
+    // Apply filters
     func handleFiltering(filterState: FilterState) {
         self.filterState = filterState
         if (othersDonationsList != nil){
@@ -106,19 +115,11 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // Delegate for triggering detail segue
     func displayDetail(chosenDonation: StoredDonation) {
         self.chosenDonation = chosenDonation
         performSegueWithIdentifier("goToDetail", sender: nil)
     }
     
 }
-
-protocol FilterProtocol {
-    func handleFiltering(filterState: FilterState)
-}
-
-protocol DisplayDetail {
-    func displayDetail(chosenDonation: StoredDonation)
-}
-
 
