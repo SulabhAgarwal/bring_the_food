@@ -15,15 +15,18 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var infoPanelView: UIView!
+    @IBOutlet weak var avatarImageView: UIImageView!
     
     var donation: StoredDonation?
     let regionRadius: CLLocationDistance = 250
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     var donationPosition: BtfAnnotation?
-
+    weak var userImageObserver: NSObjectProtocol!
+    var imageDownloader: ImageDownloader?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        mainLabel.numberOfLines = 2
         mainLabel.text = donation?.getDescription()
         infoPanelView.layer.borderColor = UIMainColor.CGColor
         infoPanelView.layer.borderWidth = 1.0
@@ -35,6 +38,16 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         mapView.addAnnotation(donationPosition)
         mapView.delegate = self
     }
+    
+    override func viewWillAppear(animated:Bool) {
+        super.viewWillAppear(animated)
+        // Register as notification center observer
+        userImageObserver = NSNotificationCenter.defaultCenter().addObserverForName(imageDownloadNotificationKey,
+            object: ModelUpdater.getInstance(),
+            queue: NSOperationQueue.mainQueue(),
+            usingBlock: {(notification:NSNotification!) in self.userImageHandler(notification)})
+    }
+
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.LightContent
@@ -77,6 +90,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             let location = view.annotation as! BtfAnnotation
             let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
             location.mapItem().openInMapsWithLaunchOptions(launchOptions)
+    }
+    
+    func userImageHandler(notification: NSNotification){
+        
     }
 }
 

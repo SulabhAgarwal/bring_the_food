@@ -1042,7 +1042,7 @@
                         <viewControllerLayoutGuide type="bottom" id="IBc-tn-xBm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="SRB-pe-1hr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="750"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjm-gy-kl6">
@@ -1055,7 +1055,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bPr-8j-U9Q">
-                                        <rect key="frame" x="538" y="28" width="46" height="30"/>
+                                        <rect key="frame" x="20" y="26" width="46" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="46" id="jvE-bg-V4e"/>
                                             <constraint firstAttribute="height" constant="30" id="zvo-qN-qYP"/>
@@ -1069,27 +1069,18 @@
                                             <action selector="backButtonPressed:" destination="5qA-EO-kRj" eventType="touchUpInside" id="Hcn-er-9F5"/>
                                         </connections>
                                     </button>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="btf_logo_small" translatesAutoresizingMaskIntoConstraints="NO" id="n0h-FG-03d">
-                                        <rect key="frame" x="25" y="31" width="23" height="20"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="23" id="NRZ-gn-EDh"/>
-                                            <constraint firstAttribute="height" constant="20" id="zcs-h9-hEx"/>
-                                        </constraints>
-                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.62352941179999999" blue="0.17254901959999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstItem="n0h-FG-03d" firstAttribute="leading" secondItem="cjm-gy-kl6" secondAttribute="leading" constant="25" id="D1V-ZQ-RWu"/>
                                     <constraint firstAttribute="height" constant="65" id="FSv-pc-5oK"/>
                                     <constraint firstAttribute="centerX" secondItem="1kN-0I-uO0" secondAttribute="centerX" id="UBm-52-xtn"/>
-                                    <constraint firstItem="bPr-8j-U9Q" firstAttribute="top" secondItem="cjm-gy-kl6" secondAttribute="top" constant="28" id="W1F-Sd-g5i"/>
+                                    <constraint firstItem="bPr-8j-U9Q" firstAttribute="leading" secondItem="cjm-gy-kl6" secondAttribute="leading" constant="20" id="USR-kl-u0i"/>
+                                    <constraint firstItem="bPr-8j-U9Q" firstAttribute="top" secondItem="cjm-gy-kl6" secondAttribute="top" constant="26" id="ZVA-E3-cmB"/>
                                     <constraint firstItem="1kN-0I-uO0" firstAttribute="top" secondItem="cjm-gy-kl6" secondAttribute="top" constant="29" id="aGJ-sn-V2O"/>
-                                    <constraint firstItem="n0h-FG-03d" firstAttribute="top" secondItem="cjm-gy-kl6" secondAttribute="top" constant="31" id="lRS-fj-zrU"/>
-                                    <constraint firstAttribute="trailing" secondItem="bPr-8j-U9Q" secondAttribute="trailing" constant="16" id="uUK-fx-5dA"/>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q9P-8v-3m1">
-                                <rect key="frame" x="0.0" y="65" width="600" height="486"/>
+                                <rect key="frame" x="0.0" y="65" width="600" height="636"/>
                                 <subviews>
                                     <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="JOO-YW-hTI">
                                         <rect key="frame" x="-5" y="189" width="610" height="185"/>
@@ -1105,21 +1096,26 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="1000" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XOe-8r-Abv">
-                                        <rect key="frame" x="23" y="16" width="362" height="63"/>
+                                        <rect key="frame" x="15" y="16" width="464" height="63"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="362" id="8j5-Pr-dPI"/>
                                             <constraint firstAttribute="height" constant="63" id="rZz-gS-nu6"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="24"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="22"/>
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-mB-QM9">
-                                        <rect key="frame" x="488" y="33" width="46" height="30"/>
-                                        <state key="normal" title="Button">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IoI-mB-QM9">
+                                        <rect key="frame" x="494" y="33" width="86" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="86" id="KZo-mO-Wto"/>
+                                        </constraints>
+                                        <state key="normal" image="book_button">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                     </button>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" image="avatar" translatesAutoresizingMaskIntoConstraints="NO" id="fwT-C5-CqN">
+                                        <rect key="frame" x="15" y="396" width="74" height="74"/>
+                                    </imageView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="JOO-YW-hTI" firstAttribute="leading" secondItem="Q9P-8v-3m1" secondAttribute="leading" constant="-5" id="3vN-Lt-9zX"/>
@@ -1128,13 +1124,13 @@
                                     <constraint firstItem="IoI-mB-QM9" firstAttribute="top" secondItem="Q9P-8v-3m1" secondAttribute="top" constant="33" id="DO0-mL-BsC"/>
                                     <constraint firstItem="r0a-Tb-x1r" firstAttribute="leading" secondItem="Q9P-8v-3m1" secondAttribute="leading" constant="-5" id="O3b-W1-dAC"/>
                                     <constraint firstAttribute="centerX" secondItem="JOO-YW-hTI" secondAttribute="centerX" id="Pav-iV-wqU"/>
-                                    <constraint firstItem="XOe-8r-Abv" firstAttribute="leading" secondItem="Q9P-8v-3m1" secondAttribute="leading" constant="23" id="WpC-fq-Btu"/>
-                                    <constraint firstAttribute="trailing" secondItem="IoI-mB-QM9" secondAttribute="trailing" constant="66" id="aQ1-rD-wJg"/>
-                                    <constraint firstItem="r0a-Tb-x1r" firstAttribute="top" secondItem="IoI-mB-QM9" secondAttribute="bottom" constant="27" id="aum-Xx-eKX"/>
+                                    <constraint firstItem="XOe-8r-Abv" firstAttribute="leading" secondItem="Q9P-8v-3m1" secondAttribute="leading" constant="15" id="WpC-fq-Btu"/>
+                                    <constraint firstAttribute="trailing" secondItem="IoI-mB-QM9" secondAttribute="trailing" constant="20" id="aQ1-rD-wJg"/>
+                                    <constraint firstItem="r0a-Tb-x1r" firstAttribute="top" secondItem="IoI-mB-QM9" secondAttribute="bottom" constant="28" id="aum-Xx-eKX"/>
                                     <constraint firstItem="JOO-YW-hTI" firstAttribute="top" secondItem="r0a-Tb-x1r" secondAttribute="bottom" constant="-1" id="e5Z-TX-kLM"/>
                                     <constraint firstItem="XOe-8r-Abv" firstAttribute="top" secondItem="Q9P-8v-3m1" secondAttribute="top" constant="16" id="l67-KN-YsR"/>
                                     <constraint firstItem="JOO-YW-hTI" firstAttribute="top" secondItem="r0a-Tb-x1r" secondAttribute="bottom" constant="8" symbolic="YES" id="lSC-On-vwU"/>
-                                    <constraint firstItem="IoI-mB-QM9" firstAttribute="leading" secondItem="XOe-8r-Abv" secondAttribute="trailing" constant="103" id="smb-ei-Kyp"/>
+                                    <constraint firstItem="IoI-mB-QM9" firstAttribute="leading" secondItem="XOe-8r-Abv" secondAttribute="trailing" constant="15" id="smb-ei-Kyp"/>
                                     <constraint firstAttribute="bottom" secondItem="JOO-YW-hTI" secondAttribute="bottom" constant="112" id="sos-aZ-dGv"/>
                                     <constraint firstItem="r0a-Tb-x1r" firstAttribute="top" secondItem="XOe-8r-Abv" secondAttribute="bottom" constant="11" id="usf-0g-CXQ"/>
                                     <constraint firstAttribute="trailing" secondItem="r0a-Tb-x1r" secondAttribute="trailing" constant="-5" id="wCT-9m-utb"/>
@@ -1177,7 +1173,10 @@
                             </mask>
                         </variation>
                     </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="750"/>
                     <connections>
+                        <outlet property="avatarImageView" destination="fwT-C5-CqN" id="1NY-cz-zgk"/>
                         <outlet property="infoPanelView" destination="r0a-Tb-x1r" id="LFM-Hb-YKv"/>
                         <outlet property="mainLabel" destination="XOe-8r-Abv" id="ngS-tY-rjj"/>
                         <outlet property="mapView" destination="JOO-YW-hTI" id="hei-Xt-oLp"/>
@@ -1582,6 +1581,7 @@
         <image name="add" width="22" height="22"/>
         <image name="alarm" width="16" height="16"/>
         <image name="avatar" width="74" height="74"/>
+        <image name="book_button" width="86" height="29"/>
         <image name="booked" width="25" height="25"/>
         <image name="booked_filled" width="25" height="25"/>
         <image name="btf_logo_small" width="23" height="20"/>
