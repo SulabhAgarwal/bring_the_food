@@ -10,6 +10,7 @@ import UIKit
 
 class SignInStep1ViewController: UIViewController {
     
+    // Outlets
     @IBOutlet weak var confirmPasswordImageView: UIImageView!
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var emailImageView: UIImageView!
@@ -24,20 +25,26 @@ class SignInStep1ViewController: UIViewController {
     @IBOutlet weak var textFieldsBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textFieldsView: UIView!
     
-    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
-    var textFieldBorderColor = UIColor(red: 0xe9/255, green: 0xe9/255, blue: 0xe9/255, alpha: 1)
-    var buttonBorderColor = UIColor(red: 0xf8/255, green: 0xd0/255, blue: 0x8f/255, alpha: 1)
+    // Interface colors
+    private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+    private var textFieldBorderColor = UIColor(red: 0xe9/255, green: 0xe9/255, blue: 0xe9/255, alpha: 1)
+    private var buttonBorderColor = UIColor(red: 0xf8/255, green: 0xd0/255, blue: 0x8f/255, alpha: 1)
     
-    weak var mailObserver:NSObjectProtocol?
-    weak var keyboardWillShowObserver:NSObjectProtocol?
-    weak var keyboardWillHideObserver:NSObjectProtocol?
-    var tapRecognizer:UITapGestureRecognizer!
+    // Keyboard height
+    private var kbHeight: CGFloat!
     
-    var kbHeight: CGFloat!
+    // Observers
+    private weak var mailObserver:NSObjectProtocol?
+    private weak var keyboardWillShowObserver:NSObjectProtocol?
+    private weak var keyboardWillHideObserver:NSObjectProtocol?
+    private var tapRecognizer:UITapGestureRecognizer!
     
     
-    // OVERRIDES
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setUpInterface()
+    }
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
@@ -58,11 +65,6 @@ class SignInStep1ViewController: UIViewController {
         self.view.addGestureRecognizer(tapRecognizer)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setUpInterface()
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         // Unregister as notification center observer
         NSNotificationCenter.defaultCenter().removeObserver(mailObserver!)
@@ -71,12 +73,7 @@ class SignInStep1ViewController: UIViewController {
         self.view.removeGestureRecognizer(tapRecognizer)
         super.viewWillDisappear(animated)
     }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
         return UIStatusBarStyle.Default
     }
@@ -137,6 +134,7 @@ class SignInStep1ViewController: UIViewController {
         }
     }
     
+    // Enables next button
     @IBAction func reactToFieldsInteraction(sender: UITextField) {
         if (emailTextField.text != "" && passwordTextField.text != ""
             && (passwordTextField.secureTextEntry == true)
@@ -148,6 +146,7 @@ class SignInStep1ViewController: UIViewController {
         }
     }
     
+    // Next button pressed
     @IBAction func nextButtonPressed(sender: UIButton) {
         if(!isValidEmail(emailTextField.text)){
             let alert = UIAlertView()
@@ -168,15 +167,19 @@ class SignInStep1ViewController: UIViewController {
         }
     }
     
+    // Abort button pressed
     @IBAction func abortRegistration(sender: UIButton) {
         self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // Learn more button pressed
     @IBAction func learnMoreButtonPressed(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string:"http://www.bringfood.org/")!)
         
     }
-    func setUpInterface() -> Void {
+    
+    // User interface settings
+    private func setUpInterface() -> Void {
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.borderColor = textFieldBorderColor.CGColor
         emailTextField.layer.cornerRadius = 3
@@ -198,33 +201,41 @@ class SignInStep1ViewController: UIViewController {
         nextButton.enabled = false
     }
     
+    // Delegate method for tapping
     func handleTapOnView(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
-    func emailAvailabilityHandler(notification: NSNotification){
+    // Handle email availability
+    private func emailAvailabilityHandler(notification: NSNotification){
         let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         if(response!.status == RequestStatus.SUCCESS){
             performSegueWithIdentifier("goToSignUpStep2", sender: nil)
         }
-        else{
+        else if (response!.status == RequestStatus.DATA_ERROR){
             let alert = UIAlertView()
             alert.title = "Email not available"
             alert.message = "The inserted email is already taken!"
             alert.addButtonWithTitle("Dismiss")
             alert.show()
+        } else{
+            let alert = UIAlertView()
+            alert.title = "Network error"
+            alert.message = "Check your internet connectivity"
+            alert.addButtonWithTitle("Dismiss")
+            alert.show()
         }
     }
     
-    func isValidEmail(testStr:String) -> Bool {
-        // println("validate calendar: \(testStr)")
+    // Regex check for email
+    private func isValidEmail(testStr:String) -> Bool {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluateWithObject(testStr)
     }
     
     // Called when keyboard appears on screen
-    func keyboardWillShow(notification: NSNotification) {
+    private func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
                 kbHeight = keyboardSize.height
@@ -234,12 +245,12 @@ class SignInStep1ViewController: UIViewController {
     }
     
     // Called when keyboard disappears from screen
-    func keyboardWillHide(notification: NSNotification) {
+    private func keyboardWillHide(notification: NSNotification) {
         self.animateTextField(false)
     }
     
     // Perform animations when keyboard appears
-    func animateTextField(up: Bool) {
+    private func animateTextField(up: Bool) {
         if(up){
             if(self.view.frame.height - self.textFieldsView.center.y - self.textFieldsView.frame.height/2 < kbHeight + 10){
                 UIView.animateWithDuration(0.3, animations: {

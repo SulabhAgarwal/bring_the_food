@@ -10,6 +10,7 @@ import UIKit
 
 class SignInStep2ViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate {
     
+    // Outlets
     @IBOutlet weak var nameImageView: UIImageView!
     @IBOutlet weak var phoneImageView: UIImageView!
     @IBOutlet weak var addressImageView: UIImageView!
@@ -25,24 +26,26 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
     @IBOutlet weak var textFieldsBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var textFieldsView: UIView!
     
+    // Interface colors
+    private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+    private var textFieldBorderColor = UIColor(red: 0xe9/255, green: 0xe9/255, blue: 0xe9/255, alpha: 1)
+    private var buttonBorderColor = UIColor(red: 0xf8/255, green: 0xd0/255, blue: 0x8f/255, alpha: 1)
+    
+    // Keyboard height
+    private var kbHeight: CGFloat!
+    
+    // Variables populated from prepareForSegue
     var email = String()
     var password = String()
     
-    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
-    var textFieldBorderColor = UIColor(red: 0xe9/255, green: 0xe9/255, blue: 0xe9/255, alpha: 1)
-    var buttonBorderColor = UIColor(red: 0xf8/255, green: 0xd0/255, blue: 0x8f/255, alpha: 1)
-    
-    weak var registrationObserver:NSObjectProtocol!
-    weak var keyboardWillShowObserver:NSObjectProtocol!
-    weak var keyboardWillHideObserver:NSObjectProtocol!
-    var tapRecognizer:UITapGestureRecognizer!
-    
-    var kbHeight: CGFloat!
+    // Observers
+    private weak var registrationObserver:NSObjectProtocol!
+    private weak var keyboardWillShowObserver:NSObjectProtocol!
+    private weak var keyboardWillHideObserver:NSObjectProtocol!
+    private var tapRecognizer:UITapGestureRecognizer!
     
     
-    // OVERRIDES
-    
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpInterface()
@@ -74,11 +77,6 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         NSNotificationCenter.defaultCenter().removeObserver(keyboardWillHideObserver)
         self.view.removeGestureRecognizer(tapRecognizer)
         super.viewWillDisappear(animated)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
@@ -141,6 +139,7 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
+    // Enables register button
     @IBAction func reactToFieldsInteraction(sender: UITextField) {
         if (nameTextField.text != "" && nameTextField != "Name"
             && phoneTextField.text != "" && phoneTextField.text != "Phone"
@@ -152,17 +151,19 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
+    // Register button pressed
     @IBAction func registerButtonPressed(sender: UIButton) {
         //TODO: IMPLEMENT REGISTRATION
         self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
+    // Abort button pressed
     @IBAction func abortRegistration(sender: UIButton) {
         self.navigationController!.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    
-    func setUpInterface() -> Void {
+    // User interface settings
+    private func setUpInterface() -> Void {
         nameTextField.layer.borderWidth = 1
         nameTextField.layer.borderColor = textFieldBorderColor.CGColor
         nameTextField.layer.cornerRadius = 3
@@ -184,15 +185,18 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         registerButton.enabled = false
     }
     
+    // Delegate method for tapping
     func handleTapOnView(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
-    func registrationHandler(notification: NSNotification){
+    // Handle registration
+    private func registrationHandler(notification: NSNotification){
         
     }
     
-    func controllerAvailable() -> Bool {
+    // Check if alert controller is available in the current iOS version    
+    private func controllerAvailable() -> Bool {
         if let gotModernAlert: AnyClass = NSClassFromString("UIAlertController") {
             return true;
         }
@@ -201,7 +205,8 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         }
     }
     
-    func displayIOS8ActionSheet() -> Void {
+    // Action sheet display in iOS8
+    private func displayIOS8ActionSheet() -> Void {
         let imageController = UIImagePickerController()
         imageController.editing = false
         imageController.delegate = self;
@@ -230,6 +235,7 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
+    // Image picker
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage image: UIImage!, editingInfo: [NSObject : AnyObject]!) {
         self.dismissViewControllerAnimated(true, completion: nil)
         changeAvatarButton.layer.cornerRadius = changeAvatarButton.frame.size.width / 2;
@@ -242,7 +248,9 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         CGImageCreateWithImageInRect(image.CGImage, clippedRect)
         changeAvatarButton.setImage(image, forState: .Normal)
     }
-    func displayIOS7ActionSheet() -> Void {
+    
+    // Action sheet display in iOS7
+    private func displayIOS7ActionSheet() -> Void {
         var actionSheet:UIActionSheet
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
             actionSheet = UIActionSheet(title: "Hello this is IOS7", delegate: self, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil,otherButtonTitles:"Select photo from library", "Take a picture")
@@ -253,6 +261,7 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
         actionSheet.showInView(self.view)
     }
     
+    // Action sheet delegate for iOS7
     func actionSheet(actionSheet: UIActionSheet, clickedButtonAtIndex buttonIndex: Int) {
         if(buttonIndex != 0){
             let imageController = UIImagePickerController()
@@ -268,7 +277,7 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
     }
     
     // Called when keyboard appears on screen
-    func keyboardWillShow(notification: NSNotification) {
+    private func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
                 kbHeight = keyboardSize.height
@@ -278,12 +287,12 @@ class SignInStep2ViewController: UIViewController, UINavigationControllerDelegat
     }
     
     // Called when keyboard disappears from screen
-    func keyboardWillHide(notification: NSNotification) {
+    private func keyboardWillHide(notification: NSNotification) {
         self.animateTextField(false)
     }
     
     // Perform animations when keyboard appears
-    func animateTextField(up: Bool) {
+    private func animateTextField(up: Bool) {
         if(up){
             if(self.view.frame.height - self.textFieldsView.center.y - self.textFieldsView.frame.height/2 < kbHeight + 10){
                 UIView.animateWithDuration(0.3, animations: {

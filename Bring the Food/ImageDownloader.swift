@@ -51,7 +51,7 @@ public class ImageDownloader{
 
     }
     
-    private func getImage() -> UIImage?{
+    public func getImage() -> UIImage?{
         return self.image
     }
 

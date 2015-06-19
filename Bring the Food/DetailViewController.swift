@@ -95,6 +95,16 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     func userImageHandler(notification: NSNotification){
+        let image = imageDownloader!.getImage()
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width / 2;
+        avatarImageView.clipsToBounds = true
+        avatarImageView.layer.borderWidth = 3.0;
+        avatarImageView.layer.borderColor = UIMainColor.CGColor
+        // Use smallest side length as crop square length
+        var squareLength = min(image!.size.width, image!.size.height)
+        var clippedRect = CGRectMake((image!.size.width - squareLength) / 2, (image!.size.height - squareLength) / 2, squareLength, squareLength)
+        CGImageCreateWithImageInRect(image!.CGImage, clippedRect)
+        avatarImageView.image = image
     }
 }
 

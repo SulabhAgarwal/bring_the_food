@@ -10,6 +10,7 @@ import UIKit
 
 class LoginViewController: UIViewController,UIActionSheetDelegate {
     
+    // Outlets
     @IBOutlet weak var emailImageView: UIImageView!
     @IBOutlet weak var passwordImageView: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
@@ -24,19 +25,19 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     @IBOutlet weak var textFieldsView: UIView!
     
     // Interface colors
-    var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
-    var textFieldBorderColor = UIColor(red: 0xe9/255, green: 0xe9/255, blue: 0xe9/255, alpha: 1)
-    var buttonBorderColor = UIColor(red: 0xf8/255, green: 0xd0/255, blue: 0x8f/255, alpha: 1)
+    private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+    private var textFieldBorderColor = UIColor(red: 0xe9/255, green: 0xe9/255, blue: 0xe9/255, alpha: 1)
+    private var buttonBorderColor = UIColor(red: 0xf8/255, green: 0xd0/255, blue: 0x8f/255, alpha: 1)
     
     // Keyboard height
-    var kbHeight: CGFloat!
+    private var kbHeight: CGFloat!
     
-    weak var loginObserver:NSObjectProtocol!
-    weak var keyboardWillShowObserver:NSObjectProtocol!
-    weak var keyboardWillHideObserver:NSObjectProtocol!
-    var tapRecognizer:UITapGestureRecognizer!
+    // Observers
+    private weak var loginObserver:NSObjectProtocol!
+    private weak var keyboardWillShowObserver:NSObjectProtocol!
+    private weak var keyboardWillHideObserver:NSObjectProtocol!
+    private var tapRecognizer:UITapGestureRecognizer!
     
-    // OVERRIDES
     
     
     override func viewDidLoad() {
@@ -46,7 +47,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
-        // Register as notification center observer
+        // Register notification center observer
         loginObserver = NSNotificationCenter.defaultCenter().addObserverForName(loginResponseNotificationKey,
             object: ModelUpdater.getInstance(),
             queue: NSOperationQueue.mainQueue(),
@@ -63,7 +64,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        // Unregister as notification center observer
+        // Unregister notification center observer
         NSNotificationCenter.defaultCenter().removeObserver(loginObserver!)
         NSNotificationCenter.defaultCenter().removeObserver(keyboardWillShowObserver!)
         NSNotificationCenter.defaultCenter().removeObserver(keyboardWillHideObserver!)
@@ -72,19 +73,9 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
 
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        // Set light content status bar
         return UIStatusBarStyle.LightContent
     }
-    
-    
-    // FUNCTIONS
-    
     
     // On focus textField behaviours
     @IBAction func emailOnFocus(sender: UITextField) {
@@ -118,6 +109,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
         }
     }
     
+    // Enables login button
     @IBAction func reactToFieldsInteraction(sender: UITextField) {
         if (emailTextField.text != "" && passwordTextField.text != ""
             && (passwordTextField.secureTextEntry == true)){
@@ -144,12 +136,8 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
         }
     }
     
-    
-    // FUNCTIONS
-    
-    
     // User interface settings
-    func setUpInterface() -> Void {
+    private func setUpInterface() -> Void {
         self.view.backgroundColor = UIMainColor
         emailTextField.layer.borderWidth = 1
         emailTextField.layer.borderColor = textFieldBorderColor.CGColor
@@ -168,17 +156,24 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     // Handle login response
-    func loginResponseHandler(notification: NSNotification){
+    private func loginResponseHandler(notification: NSNotification){
         let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         if(response!.status == RequestStatus.SUCCESS){
             let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
             let rootController = storyboard?.instantiateInitialViewController() as! UIViewController
             appDelegate.window?.rootViewController = rootController
         }
-        else{
+        else if(response!.status == RequestStatus.DATA_ERROR){
             let alert = UIAlertView()
             alert.title = "Login failed"
             alert.message = "The inserted email-password couple is wrong!"
+            alert.addButtonWithTitle("Dismiss")
+            alert.show()
+        }
+        else{
+            let alert = UIAlertView()
+            alert.title = "Network error"
+            alert.message = "Check your internet connectivity"
             alert.addButtonWithTitle("Dismiss")
             alert.show()
         }
@@ -191,7 +186,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     // Check if alert controller is available in the current iOS version
-    func controllerAvailable() -> Bool {
+    private func controllerAvailable() -> Bool {
         if let gotModernAlert: AnyClass = NSClassFromString("UIAlertController") {
             return true;
         }
@@ -201,7 +196,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     // Action sheet display in iOS8
-    func displayIOS8ActionSheet() -> Void {
+    private func displayIOS8ActionSheet() -> Void {
         let optionMenu = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         let forgotPassword = UIAlertAction(title: "Forgot Password?", style: .Default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -219,7 +214,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     // Action sheet display in iOS7
-    func displayIOS7ActionSheet() -> Void {
+    private func displayIOS7ActionSheet() -> Void {
         var actionSheet:UIActionSheet
         actionSheet = UIActionSheet(title: nil, delegate: nil, cancelButtonTitle: "Cancel", destructiveButtonTitle: nil)
         actionSheet.addButtonWithTitle("Forgot Password?")
@@ -239,7 +234,7 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     // Called when keyboard appears on screen
-    func keyboardWillShow(notification: NSNotification) {
+    private func keyboardWillShow(notification: NSNotification) {
         if let userInfo = notification.userInfo {
             if let keyboardSize =  (userInfo[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.CGRectValue() {
                 kbHeight = keyboardSize.height
@@ -249,12 +244,12 @@ class LoginViewController: UIViewController,UIActionSheetDelegate {
     }
     
     // Called when keyboard disappears from screen
-    func keyboardWillHide(notification: NSNotification) {
+    private func keyboardWillHide(notification: NSNotification) {
         self.animateTextField(false)
     }
     
     // Perform animations when keyboard appears
-    func animateTextField(up: Bool) {
+    private func animateTextField(up: Bool) {
         if(up){
             if(self.view.frame.height - self.textFieldsView.center.y - self.textFieldsView.frame.height/2 < kbHeight + 20){
                 UIView.animateWithDuration(0.3, animations: {

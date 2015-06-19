@@ -236,9 +236,9 @@
 		3B6F96C61B2DFBEE004C9503 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				B333D38A1B2042A000DBF44D /* LoginViewController.swift */,
 				B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */,
 				B3FCE0001B2505BB00A86F7E /* SignInStep2ViewController.swift */,
-				B333D38A1B2042A000DBF44D /* LoginViewController.swift */,
 				B3DED4801B2CA00F00F9808D /* MainViewController.swift */,
 				B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */,
 				B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */,
