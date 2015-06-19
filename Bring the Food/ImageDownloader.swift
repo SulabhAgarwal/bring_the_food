@@ -20,12 +20,10 @@ import UIKit
 public class ImageDownloader{
     
     private let url:String!
-    private let type: ImageType!
     private var image: UIImage?
     
-    public init(url:String!, type: ImageType!){
+    public init(url:String!){
         self.url = url
-        self.type = type
     }
     
     public func downloadImage(){
@@ -41,22 +39,16 @@ public class ImageDownloader{
                 self.image = UIImage(data: data)
                 println("ok")
             }
-            else{
-                if self.type == ImageType.AVATAR {
-                    //carico l'immagine di default per utenti
-                    
-                } else {
-                    //carico l'immagine di default per donazioni
-                    
-                }
-                
-            }
             
             // In ogni caso, qui mando la stessa notifica
             NSNotificationCenter.defaultCenter().postNotificationName(
                 imageDownloadNotificationKey,
                 object: self)
 
+    }
+    
+    private func getImage() -> UIImage?{
+        return self.image
     }
 
 }
