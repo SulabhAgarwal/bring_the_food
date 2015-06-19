@@ -10,11 +10,16 @@ import UIKit
 
 class BookingsViewController: UIViewController {
     
+    // Outlets
     @IBOutlet weak var tableView: UITableView!
     
+    // Interface colors
     var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
     
+    // Observers
     weak var donationsObserver:NSObjectProtocol?
+    
+    // Refresh control
     lazy var refreshControl: UIRefreshControl = {
         let refreshControl = UIRefreshControl()
         let refreshControlColor = UIColor(red: 0xfe/255, green: 0xfa/255, blue: 0xf3/255, alpha: 1)
@@ -24,12 +29,10 @@ class BookingsViewController: UIViewController {
         }()
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.addSubview(self.refreshControl)
-        let backgroundView = UIView(frame: CGRectZero)
-        tableView.tableFooterView = backgroundView
-        tableView.backgroundColor = UIColor.clearColor()
+        setUpInterface()
     }
     
     override func viewWillAppear(animated:Bool) {
@@ -52,19 +55,26 @@ class BookingsViewController: UIViewController {
         return UIStatusBarStyle.LightContent
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    // User interface settings
+    func setUpInterface(){
+        self.tableView.addSubview(self.refreshControl)
+        let backgroundView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = backgroundView
+        tableView.backgroundColor = UIColor.clearColor()
     }
     
+    // Handler for tableView fill
     func fillTableView(notification: NSNotification){
+        let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         let bookingsList = Model.getInstance().getMyBookings()
+        bookingsList.setRequestStatus(response!.status)
         tableView.dataSource = bookingsList
         tableView.delegate = bookingsList
         tableView.reloadData()
         refreshControl.endRefreshing()
     }
     
+    // Refresh table content
     func handleRefresh(refreshControl: UIRefreshControl) {
         Model.getInstance().downloadMyBookings()
     }

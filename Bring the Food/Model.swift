@@ -87,7 +87,7 @@ public class Model : NSObject{
         RestInterface.getInstance().getBookings()
     }
     
-    public func getMyBookings() -> BookingsList?{
+    public func getMyBookings() -> BookingsList!{
         return self.myBookings
     }
     
