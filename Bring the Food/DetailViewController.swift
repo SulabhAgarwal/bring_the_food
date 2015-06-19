@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import AddressBook
 
 class DetailViewController: UIViewController, MKMapViewDelegate {
     
@@ -30,7 +31,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         mapView.layer.borderWidth = 1.0
         centerMapOnLocation(CLLocation(latitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLatitude()!), longitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLongitude()!)))
         donationPosition = BtfAnnotation(title: donation!.getDescription(),
-            offerer: donation!.getSupplier().getName(), coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLatitude()!), longitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLongitude()!)))
+            offerer: donation!.getSupplier().getName(), address: donation!.getSupplier().getAddress().getLabel()!, coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLatitude()!), longitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLongitude()!)))
         mapView.addAnnotation(donationPosition)
         mapView.delegate = self
     }
@@ -68,23 +69,38 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         }
         return nil
     }
+    
+    func mapView(mapView: MKMapView!, annotationView view: MKAnnotationView!,
+        calloutAccessoryControlTapped control: UIControl!) {
+            let location = view.annotation as! BtfAnnotation
+            let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            location.mapItem().openInMapsWithLaunchOptions(launchOptions)
+    }
 }
 
 
 class BtfAnnotation: NSObject, MKAnnotation {
     let title: String
-    let offerer: String
+    let subtitle: String
+    let address: String
     let coordinate: CLLocationCoordinate2D
     
-    init(title: String, offerer: String, coordinate: CLLocationCoordinate2D) {
+    init(title: String, offerer: String, address: String, coordinate: CLLocationCoordinate2D) {
         self.title = title
-        self.offerer = offerer
+        self.subtitle = offerer
+        self.address = address
         self.coordinate = coordinate
         super.init()
     }
     
-    var subtitle: String {
-        return offerer
+    func mapItem() -> MKMapItem {
+        let addressDictionary = [String(kABPersonAddressStreetKey): address]
+        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDictionary)
+        
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = title
+        
+        return mapItem
     }
 }
 
