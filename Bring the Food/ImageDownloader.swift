@@ -32,18 +32,22 @@ public class ImageDownloader{
     
     public func setImage(data: NSData!, response: NSURLResponse!, error:NSError!){
         
-            println("down")
-        
-            if(error == nil && data != nil){
-                //immagine correttamente disponibile
-                self.image = UIImage(data: data)
-                println("ok")
-            }
-            
-            // In ogni caso, qui mando la stessa notifica
+        if(error == nil && data != nil){
+            //immagine correttamente disponibile
+            self.image = UIImage(data: data)
             NSNotificationCenter.defaultCenter().postNotificationName(
                 imageDownloadNotificationKey,
-                object: self)
+                object: self,
+                userInfo: ["info" : HTTPResponseData(RequestStatus.SUCCESS)]
+            )
+        }
+        else {
+            NSNotificationCenter.defaultCenter().postNotificationName(
+                imageDownloadNotificationKey,
+                object: self,
+                userInfo: ["info" : HTTPResponseData(RequestStatus.NETWORK_ERROR)]
+            )
+        }
 
     }
     
