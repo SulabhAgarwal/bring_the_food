@@ -41,8 +41,15 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
         
         let row = indexPath.row
         let mainLabel = cell.viewWithTag(1000) as! UILabel
-        mainLabel.text = bookingsList[row].getStoredDonation()?.getDescription()
         let addressLabel = cell.viewWithTag(1001) as! UILabel
+        let expirationLabel = cell.viewWithTag(1002) as! UILabel
+        let alarmIcon = cell.viewWithTag(1003) as! UIImageView
+        let amountLabel = cell.viewWithTag(1004) as! UILabel
+        let kgIcon = cell.viewWithTag(1005) as! UIImageView
+        let ltIcon = cell.viewWithTag(1006) as! UIImageView
+        let portionIcon = cell.viewWithTag(1007) as! UIImageView
+        
+        mainLabel.text = bookingsList[row].getStoredDonation()?.getDescription()
         addressLabel.numberOfLines = 2
         let iOS8 = floor(NSFoundationVersionNumber) > floor(NSFoundationVersionNumber_iOS_7_1)
         if (iOS8) {
@@ -52,18 +59,12 @@ public class BookingsList: NSObject, UITableViewDataSource, UITableViewDelegate 
             addressLabel.preferredMaxLayoutWidth = screenWidth - 89;
         }
         addressLabel.text = bookingsList[row].getStoredDonation()!.getSupplier().getAddress().getLabel()
-        let expirationLabel = cell.viewWithTag(1002) as! UILabel
         expirationLabel.text = String(bookingsList[row].getStoredDonation()!.getRemainingDays()) + "d"
         if(bookingsList[row].getStoredDonation()!.getRemainingDays() > 20){
-            let alarmIcon = cell.viewWithTag(1003) as! UIImageView
             alarmIcon.hidden = true
         }
-        let amountLabel = cell.viewWithTag(1004) as! UILabel
         amountLabel.text = "\(bookingsList[row].getStoredDonation()!.getParcelSize())"
         let parcelUnit = bookingsList[row].getStoredDonation()!.getParcelUnit()
-        let kgIcon = cell.viewWithTag(1005) as! UIImageView
-        let ltIcon = cell.viewWithTag(1006) as! UIImageView
-        let portionIcon = cell.viewWithTag(1007) as! UIImageView
         if(parcelUnit == ParcelUnit.KILOGRAMS){
             kgIcon.hidden = false
             ltIcon.hidden = true

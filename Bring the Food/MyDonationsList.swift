@@ -43,10 +43,16 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
         
         let donationsInSection = donations[indexPath.section]
         let donation = donationsInSection.donationsList[indexPath.row]
-        
         let mainLabel = cell.viewWithTag(1000) as! UILabel
-        mainLabel.text = donation.getDescription()
         let addressLabel = cell.viewWithTag(1001) as! UILabel
+        let expirationLabel = cell.viewWithTag(1002) as! UILabel
+        let alarmIcon = cell.viewWithTag(1003) as! UIImageView
+        let amountLabel = cell.viewWithTag(1004) as! UILabel
+        let kgIcon = cell.viewWithTag(1005) as! UIImageView
+        let ltIcon = cell.viewWithTag(1006) as! UIImageView
+        let portionIcon = cell.viewWithTag(1007) as! UIImageView
+        
+        mainLabel.text = donation.getDescription()
         addressLabel.numberOfLines = 2
         let iOS8 = floor(NSFoundationVersionNumber) > floor(NSFoundationVersionNumber_iOS_7_1)
         if (iOS8) {
@@ -56,18 +62,12 @@ public class MyDonationsList: NSObject, UITableViewDataSource, UITableViewDelega
             addressLabel.preferredMaxLayoutWidth = screenWidth - 89;
         }
         addressLabel.text = donation.getSupplier().getAddress().getLabel()
-        let expirationLabel = cell.viewWithTag(1002) as! UILabel
         expirationLabel.text = String(donation.getRemainingDays()) + "d"
         if(donation.getRemainingDays() > 20){
-            let alarmIcon = cell.viewWithTag(1003) as! UIImageView
             alarmIcon.hidden = true
         }
-        let amountLabel = cell.viewWithTag(1004) as! UILabel
         amountLabel.text = "\(donation.getParcelSize())"
         let parcelUnit = donation.getParcelUnit()
-        let kgIcon = cell.viewWithTag(1005) as! UIImageView
-        let ltIcon = cell.viewWithTag(1006) as! UIImageView
-        let portionIcon = cell.viewWithTag(1007) as! UIImageView
         if(parcelUnit == ParcelUnit.KILOGRAMS){
             kgIcon.hidden = false
             ltIcon.hidden = true
