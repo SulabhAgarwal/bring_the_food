@@ -41,11 +41,13 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     
     override func viewWillAppear(animated:Bool) {
         super.viewWillAppear(animated)
+        imageDownloader = ImageDownloader(url: donation?.getSupplier().getImageURL())
         // Register as notification center observer
         userImageObserver = NSNotificationCenter.defaultCenter().addObserverForName(imageDownloadNotificationKey,
-            object: ModelUpdater.getInstance(),
+            object: imageDownloader,
             queue: NSOperationQueue.mainQueue(),
             usingBlock: {(notification:NSNotification!) in self.userImageHandler(notification)})
+        imageDownloader?.downloadImage()
     }
 
     
@@ -93,7 +95,6 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     }
     
     func userImageHandler(notification: NSNotification){
-        
     }
 }
 
