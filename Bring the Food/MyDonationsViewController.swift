@@ -8,13 +8,16 @@
 
 import UIKit
 
-class MyDonationsViewController: UIViewController {
+class MyDonationsViewController: UIViewController, DisplayDetail {
     
     // Outlets
     @IBOutlet weak var tableView: UITableView!
     
     // Interface colors
     private var UIMainColor = UIColor(red: 0xf6/255, green: 0xae/255, blue: 0x39/255, alpha: 1)
+    
+    // Private variables
+    private var chosenDonation: StoredDonation?
     
     // Observers
     private weak var donationsObserver:NSObjectProtocol?
@@ -51,8 +54,14 @@ class MyDonationsViewController: UIViewController {
     }
     
     override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        // Set light content status bar
         return UIStatusBarStyle.LightContent
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!){
+        if(segue.identifier == "goToMyDetail"){
+            var vc = segue.destinationViewController as! MyDetailViewController
+            vc.donation = chosenDonation
+        }
     }
     
     // User interface settings
@@ -68,6 +77,7 @@ class MyDonationsViewController: UIViewController {
         let response = (notification.userInfo as! [String : HTTPResponseData])["info"]
         let myDonationsList = Model.getInstance().getMyDonationsList()
         myDonationsList.setRequestStatus(response!.status)
+        myDonationsList.delegate = self
         tableView.dataSource = myDonationsList
         tableView.delegate = myDonationsList
         tableView.reloadData()
@@ -77,6 +87,12 @@ class MyDonationsViewController: UIViewController {
     // Refresh table content
     func handleRefresh(refreshControl: UIRefreshControl) {
         Model.getInstance().downloadMyDonationsList()
+    }
+    
+    // Delegate for triggering detail segue
+    func displayDetail(chosenDonation: StoredDonation) {
+        self.chosenDonation = chosenDonation
+        performSegueWithIdentifier("goToMyDetail", sender: nil)
     }
 
 }

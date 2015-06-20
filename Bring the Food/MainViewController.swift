@@ -66,7 +66,7 @@ class MainViewController: UIViewController, FilterProtocol, DisplayDetail {
             vc.filterState = self.filterState
         }
         else if(segue.identifier == "goToDetail"){
-            var vc = segue.destinationViewController as! DetailViewController
+            var vc = segue.destinationViewController as! MainDetailViewController
             vc.donation = chosenDonation
         }
     }
