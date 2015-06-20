@@ -1033,10 +1033,10 @@
             </objects>
             <point key="canvasLocation" x="2406" y="-472"/>
         </scene>
-        <!--Detail View Controller-->
+        <!--Main Detail View Controller-->
         <scene sceneID="1WO-DT-Ed3">
             <objects>
-                <viewController id="5qA-EO-kRj" customClass="DetailViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5qA-EO-kRj" customClass="MainDetailViewController" customModule="Bring_the_Food" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="57G-qo-Htd"/>
                         <viewControllerLayoutGuide type="bottom" id="IBc-tn-xBm"/>
@@ -1232,7 +1232,7 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq2-Sj-Met">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jq2-Sj-Met">
                                         <rect key="frame" x="105" y="404" width="475" height="24"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1259,7 +1259,7 @@
                                     <constraint firstItem="JOO-YW-hTI" firstAttribute="leading" secondItem="Q9P-8v-3m1" secondAttribute="leading" constant="-5" id="3vN-Lt-9zX"/>
                                     <constraint firstItem="Td5-WG-ycD" firstAttribute="top" secondItem="mqW-cs-zVt" secondAttribute="bottom" constant="12" id="9ov-90-TuF"/>
                                     <constraint firstItem="r0a-Tb-x1r" firstAttribute="top" secondItem="XOe-8r-Abv" secondAttribute="bottom" constant="8" id="9wG-Qy-Fmw"/>
-                                    <constraint firstAttribute="bottom" secondItem="jq2-Sj-Met" secondAttribute="bottom" constant="15" id="C1G-SR-4kp"/>
+                                    <constraint firstAttribute="bottom" secondItem="jq2-Sj-Met" secondAttribute="bottom" constant="11" id="C1G-SR-4kp"/>
                                     <constraint firstAttribute="trailing" secondItem="JOO-YW-hTI" secondAttribute="trailing" constant="-5" id="CVx-At-i30"/>
                                     <constraint firstItem="jq2-Sj-Met" firstAttribute="leading" secondItem="fwT-C5-CqN" secondAttribute="trailing" constant="16" id="Cem-OA-rmb"/>
                                     <constraint firstItem="r0a-Tb-x1r" firstAttribute="leading" secondItem="Q9P-8v-3m1" secondAttribute="leading" constant="-5" id="O3b-W1-dAC"/>

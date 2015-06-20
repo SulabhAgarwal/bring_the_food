@@ -51,20 +51,19 @@
 		3BD2847C1B2C0CA200D77319 /* BtfNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B4AE15F1B2B5AE700436903 /* BtfNotification.swift */; };
 		3BFFF2DB1B24A4CD002C2AD5 /* HTTPResponseData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */; };
 		3BFFF2DC1B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */; };
+		B32759BF1B34FC950082DCB5 /* MainDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B32759BE1B34FC950082DCB5 /* MainDetailViewController.swift */; };
 		B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B333D38A1B2042A000DBF44D /* LoginViewController.swift */; };
 		B369EF621B34A7FF00E28079 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF611B34A7FF00E28079 /* FilterProtocol.swift */; };
 		B369EF641B34A81E00E28079 /* DisplayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF631B34A81E00E28079 /* DisplayDetail.swift */; };
 		B369EF651B34A85000E28079 /* FilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF611B34A7FF00E28079 /* FilterProtocol.swift */; };
 		B369EF661B34A85000E28079 /* DisplayDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = B369EF631B34A81E00E28079 /* DisplayDetail.swift */; };
 		B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */; };
-		B38DB33A1B337DC7006C4820 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */; };
 		B39374EF1B30162E0034473B /* MyDonationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */; };
 		B3A30B0F1B32BBE200F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
 		B3A30B101B32BFEC00F733E0 /* FilterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A30B0E1B32BBE200F733E0 /* FilterState.swift */; };
 		B3BEE6071B33412C001F7E7F /* OthersDonationsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2727F11B2CA9BA0064F53A /* OthersDonationsList.swift */; };
 		B3BEE6081B3342BF001F7E7F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3BEE6091B33431D001F7E7F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
-		B3BEE60B1B3348C2001F7E7F /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */; };
 		B3BF98B21B2F97C000E79515 /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3BF98B11B2F97C000E79515 /* FilterViewController.swift */; };
 		B3DED4811B2CA00F00F9808D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3DED4801B2CA00F00F9808D /* MainViewController.swift */; };
 		B3E762131B2488FC004C631F /* SignInStep1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */; };
@@ -110,13 +109,13 @@
 		3BFFF2D81B24A4CD002C2AD5 /* HTTPResponseData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPResponseData.swift; sourceTree = "<group>"; };
 		3BFFF2D91B24A4CD002C2AD5 /* NSNotificationCenterKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterKeys.swift; sourceTree = "<group>"; };
 		3BFFF2DA1B24A4CD002C2AD5 /* RestInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestInterface.swift; sourceTree = "<group>"; };
+		B32759BE1B34FC950082DCB5 /* MainDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainDetailViewController.swift; sourceTree = "<group>"; };
 		B333D38A1B2042A000DBF44D /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDonationsViewController.swift; sourceTree = "<group>"; };
 		B369EF611B34A7FF00E28079 /* FilterProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterProtocol.swift; sourceTree = "<group>"; };
 		B369EF631B34A81E00E28079 /* DisplayDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisplayDetail.swift; sourceTree = "<group>"; };
 		B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BookingsViewController.swift; sourceTree = "<group>"; };
 		B3A30B0E1B32BBE200F733E0 /* FilterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterState.swift; sourceTree = "<group>"; };
-		B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		B3BF98B11B2F97C000E79515 /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		B3DED4801B2CA00F00F9808D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B3E762121B2488FC004C631F /* SignInStep1ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInStep1ViewController.swift; sourceTree = "<group>"; };
@@ -242,7 +241,7 @@
 				B3541BBF1B2F496800AA7F65 /* MyDonationsViewController.swift */,
 				B384C52F1B2F73CF007DDAA2 /* BookingsViewController.swift */,
 				B3BF98B11B2F97C000E79515 /* FilterViewController.swift */,
-				B3BEE60A1B3348C2001F7E7F /* DetailViewController.swift */,
+				B32759BE1B34FC950082DCB5 /* MainDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -382,10 +381,10 @@
 				B333D38B1B2042A000DBF44D /* LoginViewController.swift in Sources */,
 				3B2727F31B2CA9BA0064F53A /* MyDonationsList.swift in Sources */,
 				3BC327161B2DB8B0002F0DCE /* AppDelegate.swift in Sources */,
+				B32759BF1B34FC950082DCB5 /* MainDetailViewController.swift in Sources */,
 				3B2E97F11B28B59400506B54 /* NewDonation.swift in Sources */,
 				B369EF621B34A7FF00E28079 /* FilterProtocol.swift in Sources */,
 				B384C5301B2F73CF007DDAA2 /* BookingsViewController.swift in Sources */,
-				B3BEE60B1B3348C2001F7E7F /* DetailViewController.swift in Sources */,
 				3B6F96BE1B2DF379004C9503 /* ParcelUnit.swift in Sources */,
 				3B4AE1661B2B65D200436903 /* Model.swift in Sources */,
 				3B3441451B300B420080360D /* NSUserDefaultsKeys.swift in Sources */,
@@ -416,7 +415,6 @@
 				3BD284791B2C0C9900D77319 /* Booking.swift in Sources */,
 				3BD2847B1B2C0C9F00D77319 /* Address.swift in Sources */,
 				B369EF651B34A85000E28079 /* FilterProtocol.swift in Sources */,
-				B38DB33A1B337DC7006C4820 /* DetailViewController.swift in Sources */,
 				3B6F96BF1B2DF39D004C9503 /* ParcelUnit.swift in Sources */,
 				3B49131E1B2EAE7700173BAE /* ImageDownloader.swift in Sources */,
 				3BD284751B2C089200D77319 /* ModelUpdater.swift in Sources */,

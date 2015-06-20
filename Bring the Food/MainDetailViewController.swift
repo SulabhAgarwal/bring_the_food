@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 import AddressBook
 
-class DetailViewController: UIViewController, MKMapViewDelegate {
+class MainDetailViewController: UIViewController, MKMapViewDelegate {
     
     // Outlets
     @IBOutlet weak var mapView: MKMapView!
@@ -107,7 +107,7 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         }
         expirationLabel.text = String(donation!.getRemainingDays()) + " days left"
     }
-
+    
     // Center the mapView on the specified location
     func centerMapOnLocation(location: CLLocation) {
         let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
@@ -188,4 +188,5 @@ class BtfAnnotation: NSObject, MKAnnotation {
         return mapItem
     }
 }
+
 
