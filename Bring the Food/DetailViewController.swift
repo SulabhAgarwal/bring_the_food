@@ -16,6 +16,12 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var infoPanelView: UIView!
+    @IBOutlet weak var foodTypeLabel: UILabel!
+    @IBOutlet weak var foodQuantityLabel: UILabel!
+    @IBOutlet weak var expirationLabel: UILabel!
+    @IBOutlet weak var quantityKgImageView: UIImageView!
+    @IBOutlet weak var quantityLitersImageView: UIImageView!
+    @IBOutlet weak var quantityPortionsImageView: UIImageView!
     @IBOutlet weak var avatarImageView: UIImageView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -78,7 +84,28 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
         addressLabel.text = donation!.getSupplier().getAddress().getLabel()
         emailLabel.text = donation!.getSupplier().getEmail()
         phoneLabel.text = donation!.getSupplier().getPhone()
-
+        foodTypeLabel.text = donation!.getProductType().description
+        foodQuantityLabel.text = String(stringInterpolationSegment: donation!.getParcelSize())
+        let parcelUnit = donation!.getParcelUnit()
+        if(parcelUnit == ParcelUnit.KILOGRAMS){
+            quantityKgImageView.hidden = false
+            quantityLitersImageView.hidden = true
+            quantityPortionsImageView.hidden = true
+            foodQuantityLabel.text = foodQuantityLabel.text! + " Kg"
+        }
+        else if(parcelUnit == ParcelUnit.LITERS){
+            quantityKgImageView.hidden = true
+            quantityLitersImageView.hidden = false
+            quantityPortionsImageView.hidden = true
+            foodQuantityLabel.text = foodQuantityLabel.text! + " Lt"
+        }
+        else{
+            quantityKgImageView.hidden = true
+            quantityLitersImageView.hidden = true
+            quantityPortionsImageView.hidden = false
+            foodQuantityLabel.text = foodQuantityLabel.text! + " portions"
+        }
+        expirationLabel.text = String(donation!.getRemainingDays()) + " days left"
     }
 
     // Center the mapView on the specified location
