@@ -17,6 +17,9 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var infoPanelView: UIView!
     @IBOutlet weak var avatarImageView: UIImageView!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
     
     // Variables populated from prepareForSegue
     var donation: StoredDonation?
@@ -71,6 +74,10 @@ class DetailViewController: UIViewController, MKMapViewDelegate {
             offerer: donation!.getSupplier().getName(), address: donation!.getSupplier().getAddress().getLabel()!, coordinate: CLLocationCoordinate2D(latitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLatitude()!), longitude: CLLocationDegrees(donation!.getSupplier().getAddress().getLongitude()!)))
         mapView.addAnnotation(donationPosition)
         mapView.delegate = self
+        addressLabel.numberOfLines = 2
+        addressLabel.text = donation!.getSupplier().getAddress().getLabel()
+        emailLabel.text = donation!.getSupplier().getEmail()
+        phoneLabel.text = donation!.getSupplier().getPhone()
 
     }
 
